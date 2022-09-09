@@ -20,9 +20,10 @@ router.get("/", async (req, res) => {
 
 router.get("/:idPokemon", async (req, res) => {
   const { idPokemon } = req.params;
-  const poke = getPokeById(idPokemon);
 
-  res.status(200).json(poke);
+  const poke = await getPokeById(idPokemon);
+
+  return res.status(200).json(poke);
 });
 
 router.post("/", async (req, res, next) => {
