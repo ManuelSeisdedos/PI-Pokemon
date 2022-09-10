@@ -1,24 +1,25 @@
 const { Pokemon, Type } = require("../db");
 const axios = require("axios");
 const getPokesApi = async () => {
+  const allPokes = await axios.get(
+    "https://pokeapi.co/api/v2/pokemon?limit=40"
+  );
+  const allUrl = allPokes.data.results.map((e) => axios.get(e.url));
+  const promesas = await Promise.all(allUrl);
   const resultado = [];
-  for (let i = 1; i <= 40; i++) {
-    const result = await axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${i}`)
-      .then((res) =>
-        resultado.push({
-          name: res.data.name,
-          image: res.data.sprites.other["official-artwork"].front_default,
-          type: res.data.types.map((e) => e.type.name),
-        })
-      );
-  }
-  console.log(resultado);
+  promesas.map((e) =>
+    resultado.push({
+      name: e.data.name,
+      image: e.data.sprites.other["official-artwork"].front_default,
+      type: e.data.types.map((e) => e.type.name),
+    })
+  );
+
   return resultado;
 };
 
 const getDbPokes = async () => {
-  return await Pokemon.findAll({
+  const result = await Pokemon.findAll({
     include: {
       model: Type,
       attributes: ["tipo"],
@@ -27,6 +28,15 @@ const getDbPokes = async () => {
       },
     },
   });
+  const resultado = [];
+  const allPokesDb = result.map((e) =>
+    resultado.push({
+      name: e.name,
+      image: e.image,
+      type: e.type,
+    })
+  );
+  return resultado;
 };
 
 const getAllPokes = async () => {
@@ -86,9 +96,18 @@ const getPokeById = async (id) => {
 };
 
 const getTypesPokeApi = async () => {
+  const result = [];
   const types = await axios.get("https://pokeapi.co/api/v2/type");
-  const tipos = types.data.results.map((e) => e.name);
-  return tipos;
+  console.log(types.data.results[0]);
+  const tipos = types.data.results.map((e) =>
+    result.push({
+      tipo: e.name,
+    })
+  );
+  console.log(result);
+  await Type.bulkCreate(result);
+  const pokeType = await Type.findAll();
+  return pokeType;
 };
 
 module.exports = { getAllPokes, getPokeById, getTypesPokeApi };

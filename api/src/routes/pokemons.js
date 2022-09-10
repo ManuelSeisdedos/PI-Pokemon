@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Pokemon } = require("../db");
+const { Pokemon, Type } = require("../db");
 const { getAllPokes, getPokeById } = require("./controllers");
 const router = Router();
 
@@ -27,8 +27,18 @@ router.get("/:idPokemon", async (req, res) => {
 });
 
 router.post("/", async (req, res, next) => {
-  const { id, name, vida, ataque, defensa, velocidad, altura, peso } = req.body;
-  const { typeId } = req.query;
+  const {
+    id,
+    name,
+    vida,
+    ataque,
+    defensa,
+    velocidad,
+    altura,
+    peso,
+    type,
+    image,
+  } = req.body;
   const newPokemon = await Pokemon.create({
     id,
     name,
@@ -38,10 +48,14 @@ router.post("/", async (req, res, next) => {
     velocidad,
     altura,
     peso,
+    type,
+    image,
   });
-
-  if (typeId) {
-    await newPokemon.addType(typeId);
+  const tipo = await Type.findOne({
+    where: { tipo: type },
+  });
+  if (type) {
+    await newPokemon.addType(tipo);
   }
 
   res.json(newPokemon);
