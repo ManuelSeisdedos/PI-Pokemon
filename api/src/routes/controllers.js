@@ -47,6 +47,7 @@ const getAllPokes = async () => {
 
   return allPokes;
 };
+
 const getPokeIdApi = async (id) => {
   try {
     const poke = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
