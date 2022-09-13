@@ -1,21 +1,19 @@
 import axios from 'axios'
-const {LOCAL} = process.env
+const LOCAL = "http://localhost:3001/"
 export const GET_POKEMONS = 'GET_POKEMONS'
 
-
+console.log("LOCAL__>", LOCAL)
 export function getPokemons(){
-    return function(dispatch){
+    return async (dispatch) => {
        try {
-        axios.get(`${LOCAL}pokemons`)
-        .then((pokes) => {
-            dispatch({
+        const pokes = await axios.get(`${LOCAL}pokemons`)  
+        return dispatch({
                 type: GET_POKEMONS,
                 payload: pokes.data
             })
-        })
-
-       } catch (error) {
-            console.log(error)
-       }
+       } catch (e)  {
+        console.log(e);
+        return dispatch({ type: GET_POKEMONS, payload: [] })
+    }
 
 }} 

@@ -1,10 +1,10 @@
 import './App.css';
-import Pokemons from './components/pokemons';
+import Home from './components/Home';
 
 function App() {
   return (
     <div className="App">
-      <Pokemons/>
+      <Home/>
     </div>
   );
 }

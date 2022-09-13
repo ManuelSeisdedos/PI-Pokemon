@@ -13,23 +13,23 @@ export default function reducer (state = initialState, action) {
                 ...state,
                 pokemons: action.payload
             }
-        case GET_POKE: 
+        // case GET_POKE: 
 
-        return {
-            ...state,
-            filteredPokes: action.payload
-        }
+        // return {
+        //     ...state,
+        //     filteredPokes: action.payload
+        // }
 
-        case GET_TYPES:
-            return {
-                ...state, 
-                types: action.payload
-            }
+        // case GET_TYPES:
+        //     return {
+        //         ...state, 
+        //         types: action.payload
+        //     }
 
-        case POST_POKEMON: 
-            return {
+    //     case POST_POKEMON: 
+    //         return {
 
-        }
+    //     }
         default: return state
-     }
+}
 }
