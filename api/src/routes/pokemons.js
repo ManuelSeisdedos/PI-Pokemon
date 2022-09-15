@@ -40,17 +40,18 @@ router.post("/", async (req, res, next) => {
     image,
   } = req.body;
   const newPokemon = await Pokemon.create({
-    id,
-    name,
-    vida,
-    ataque,
-    defensa,
-    velocidad,
-    altura,
-    peso,
-    type,
-    image,
-  });
+id,
+      name,
+      vida,
+      ataque,
+      defensa,
+      velocidad,
+      altura,
+      peso,
+      type,
+      image,}
+    
+  );
   const tipo = await Type.findOne({
     where: { tipo: type },
   });

@@ -1,35 +1,35 @@
-import { GET_POKEMONS, POST_POKEMON, GET_TYPES } from "../actions";
+import { GET_POKEMONS, POST_POKEMON, GET_TYPES, GET_POKE } from "../actions";
 
 const initialState = {
-    pokemons: [],
-    filteredPokes: [],
-    types: []
-}
+  pokemons: [],
+  filteredPokes: [],
+  types: [],
+};
 
-export default function reducer (state = initialState, action) {
-     switch(action.type){
-        case GET_POKEMONS: 
-            return {
-                ...state,
-                pokemons: action.payload
-            }
-        // case GET_POKE: 
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case GET_POKEMONS:
+      return {
+        ...state,
+        pokemons: action.payload,
+      };
+    case GET_POKE:
+      return {
+        ...state,
+        filteredPokes: action.payload,
+      };
 
-        // return {
-        //     ...state,
-        //     filteredPokes: action.payload
-        // }
+    // case GET_TYPES:
+    //     return {
+    //         ...state,
+    //         types: action.payload
+    //     }
 
-        // case GET_TYPES:
-        //     return {
-        //         ...state, 
-        //         types: action.payload
-        //     }
-
-    //     case POST_POKEMON: 
+    //     case POST_POKEMON:
     //         return {
 
     //     }
-        default: return state
-}
+    default:
+      return state;
+  }
 }

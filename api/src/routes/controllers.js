@@ -1,5 +1,7 @@
 const { Pokemon, Type } = require("../db");
 const axios = require("axios");
+
+
 const getPokesApi = async () => {
   const allPokes = await axios.get(
     "https://pokeapi.co/api/v2/pokemon?limit=40"
