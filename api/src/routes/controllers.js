@@ -1,7 +1,6 @@
 const { Pokemon, Type } = require("../db");
 const axios = require("axios");
 
-
 const getPokesApi = async () => {
   const allPokes = await axios.get(
     "https://pokeapi.co/api/v2/pokemon?limit=40"
@@ -93,6 +92,7 @@ const getPokeById = async (id) => {
     else return "No existe un pokemon con este id";
   } else {
     const poke = await getPokeIdApi(id);
+
     if (poke) return poke;
     else return "No existe un pokemon con este id";
   }

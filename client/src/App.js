@@ -1,16 +1,21 @@
 import "./App.css";
+import { SinglePokemon } from "./components/SinglePokemon";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import { LandingPage } from "./components/LandingPage";
-import { SinglePokemon } from "./components/SinglePokemon";
-import { BrowseRouter, Route, Switch } from "react-router-dom";
+import { NavBar } from "./components/NavBar";
 
 function App() {
   return (
-    <BrowseRouter>
+    <BrowserRouter>
       <div className="App">
-        <SinglePokemon />
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/" component={NavBar} />
+        </Switch>
+        <Route path="/home" component={Home} />
       </div>
-    </BrowseRouter>
+    </BrowserRouter>
   );
 }
 

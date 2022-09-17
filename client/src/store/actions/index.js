@@ -2,8 +2,9 @@ import axios from "axios";
 const LOCAL = "http://localhost:3001/";
 export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_POKE = "GET_POKE";
-
-console.log("LOCAL__>", LOCAL);
+export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
+export const FILTER_BY_NAME = "FILTER_BY_NAME";
+export const FILTER_BY_CREATED = "FILTER_BY_CREATED";
 
 export function getPokemons() {
   return async (dispatch) => {
@@ -30,5 +31,26 @@ export function getOnePoke(name) {
       console.log(e);
       return dispatch({ type: GET_POKE, payload: [] });
     }
+  };
+}
+
+export function filterPokemonByType(payload) {
+  return {
+    type: FILTER_BY_TYPE,
+    payload,
+  };
+}
+
+export function filteredByName(payload) {
+  return {
+    type: FILTER_BY_NAME,
+    payload,
+  };
+}
+
+export function filterByCreated(payload) {
+  return {
+    type: FILTER_BY_CREATED,
+    payload,
   };
 }

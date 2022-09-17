@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import pika from "../images/4tym.gif";
 
-export default function LandingPage() {
+export function LandingPage() {
   return (
     <div>
       <img src={pika} alt="loading..." />
