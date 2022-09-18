@@ -1,4 +1,9 @@
-import { filterForName, filterForType } from "../../helpers/Filters";
+import {
+  filterForName,
+  filterForType,
+  filterForCreated,
+  filterForNameOrId,
+} from "../../helpers/Filters";
 import {
   GET_POKEMONS,
   POST_POKEMON,
@@ -39,7 +44,7 @@ export default function reducer(state = initialState, action) {
     case FILTER_BY_NAME:
       return {
         ...state,
-        pokemons: filterForName(state.allPokemons, action.payload),
+        pokemons: filterForNameOrId(state.allPokemons, action.payload),
       };
     case FILTER_BY_CREATED:
       return {

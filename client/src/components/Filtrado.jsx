@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { filterPokemonByType } from "../store/actions";
+import { filterPokemonByType, filterByCreated } from "../store/actions";
 import { useDispatch } from "react-redux";
 
 export function Filtrado() {
@@ -8,23 +8,28 @@ export function Filtrado() {
     dispatch(filterPokemonByType(e.target.value));
   }
 
+  function handleFilteredExt(e) {
+    dispatch(filterByCreated(e.target.value));
+    console.log("TARGET", e.target.value);
+  }
+
   return (
     <div>
       <div>
-        <select onChange={(e) => handleFilteredStatus(e)}>
-          <option value="-">Pokemon Existente</option>
-          <option value="-">Pokemon Creado</option>
+        <select onChange={(e) => handleFilteredExt(e)}>
+          <option value="pokemonexistente">Pokemon Existente</option>
+          <option value="pokemoncreado">Pokemon Creado</option>
         </select>
       </div>
       <div>
-        <select onChange={(e) => handleFilteredStatus(e)}>
+        <select>
           <option value="asc">A to Z</option>
           <option value="desc">Z to A</option>
         </select>
       </div>
 
       <div>
-        <select onChange={(e) => handleFilteredStatus(e)}>
+        <select>
           <option value="attackasc">Ataque Ascendente</option>
           <option value="attackdesc">Ataque Descendente</option>
         </select>

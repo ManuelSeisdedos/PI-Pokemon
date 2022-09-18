@@ -25,7 +25,7 @@ const SearchBar = () => {
         value={pokemon}
         onChange={handleChange}
       />
-      <button>Buscar</button>
+      <button>Buscar </button>
     </form>
   );
 };

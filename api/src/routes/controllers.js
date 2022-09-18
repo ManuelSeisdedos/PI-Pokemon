@@ -10,6 +10,7 @@ const getPokesApi = async () => {
   const resultado = [];
   promesas.map((e) =>
     resultado.push({
+      id: e.data.id,
       name: e.data.name,
       image: e.data.sprites.other["official-artwork"].front_default,
       type: e.data.types.map((e) => e.type.name),
@@ -24,17 +25,16 @@ const getDbPokes = async () => {
     include: {
       model: Type,
       attributes: ["tipo"],
-      through: {
-        attributes: [],
-      },
     },
   });
+  console.log("resul pk db -->", result);
   const resultado = [];
   const allPokesDb = result.map((e) =>
     resultado.push({
+      id: e.id,
       name: e.name,
       image: e.image,
-      type: e.type,
+      type: e.types.map((e) => e["tipo"]),
     })
   );
   return resultado;
@@ -101,16 +101,22 @@ const getPokeById = async (id) => {
 const getTypesPokeApi = async () => {
   const result = [];
   const types = await axios.get("https://pokeapi.co/api/v2/type");
-  console.log(types.data.results[0]);
+
   const tipos = types.data.results.map((e) =>
     result.push({
       tipo: e.name,
     })
   );
-  console.log(result);
-  await Type.bulkCreate(result);
+
+  result.forEach((e) => {
+    Type.findOrCreate({
+      where: { tipo: e.tipo },
+    });
+  });
   const pokeType = await Type.findAll();
   return pokeType;
 };
+
+getPokesDb = async () => await Type.findAll();
 
 module.exports = { getAllPokes, getPokeById, getTypesPokeApi };
