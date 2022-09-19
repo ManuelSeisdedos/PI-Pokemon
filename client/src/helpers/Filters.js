@@ -14,18 +14,67 @@ export function filterForNameOrId(allPokemons, name) {
 }
 
 export function filterForCreated(allPokemons, payload) {
-  console.log("allpokes", allPokemons);
-  if (payload === "pokemonexistente") {
-    const result = allPokemons.map((poke) => {
-      if (poke.createdInDb) {
-        result.push(poke);
-      }
-    });
+  const filtradoPorExistente = allPokemons.filter(
+    (poke) => poke.created === false
+  );
+  const filtradoPorCreado = allPokemons.filter(
+    (poke) => poke.created === "true"
+  );
 
-    console.log("RESULT", result);
-    return result;
+  if (payload === "all") {
+    return allPokemons;
+  } else if (payload === "pokemonexistente") {
+    return filtradoPorExistente;
+  } else if (payload === "pokemoncreado") {
+    return filtradoPorCreado;
   }
-  if (payload === "pokemoncreado") {
-    return allPokemons.filter((poke) => poke.hasOwnProperty("createdInDb"));
-  }
+
+  return [];
 }
+
+const ordenedAttackAsc = (pokemonOrdenar) =>
+  pokemonOrdenar.sort((a, b) => {
+    // a.name = a.name.toLowerCase();
+    // b.name = b.name.toLowerCase();
+    if (a.name.toLowerCase() > b.name.toLowerCase()) {
+      return 1;
+    }
+    if (a.name.toLowerCase() < b.name.toLowerCase()) {
+      return -1;
+    }
+    return 0;
+  });
+
+const ordenedAttackDesc = (pokemonOrdenar) =>
+  pokemonOrdenar.sort((a, b) => {
+    // a.name = a.name.toLowerCase();
+    // b.name = b.name.toLowerCase();
+    if (a.name.toLowerCase() < b.name.toLowerCase()) {
+      return 1;
+    }
+    if (a.name.toLowerCase() > b.name.toLowerCase()) {
+      return -1;
+    }
+    return 0;
+  });
+
+// export function filterForAlf(allPokemons, payload) {
+//   const pokemonOrdenar = allPokemons;
+
+//   if (payload === "asc") {
+//     console.log("ORDENADO", ordenedAttackAsc(pokemonOrdenar));
+//     return ordenedAttackAsc(pokemonOrdenar);
+//   } else if (payload === "desc") {
+//     return ordenedAttackDesc(pokemonOrdenar);
+//   } else {
+//     return allPokemons;
+//   }
+// }
+
+export const filterForAlf = (allPokemons, order) => {
+  const pokemonOrdenar = [...allPokemons];
+
+  return order === "asc"
+    ? ordenedAttackAsc(pokemonOrdenar)
+    : ordenedAttackDesc(pokemonOrdenar);
+};

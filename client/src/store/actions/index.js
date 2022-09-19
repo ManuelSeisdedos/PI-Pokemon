@@ -5,6 +5,7 @@ export const GET_POKE = "GET_POKE";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_CREATED = "FILTER_BY_CREATED";
+export const FILTER_BY_ALF = "FILTER_BY_ALF";
 
 export function getPokemons() {
   return async (dispatch) => {
@@ -15,14 +16,12 @@ export function getPokemons() {
         payload: pokes.data,
       });
     } catch (e) {
-      console.log(e);
       return dispatch({ type: GET_POKEMONS, payload: [] });
     }
   };
 }
 
 export function getOnePoke(name) {
-  console.log(name);
   return async (dispatch) => {
     try {
       const poke = await axios.get(`${LOCAL}pokemons?name=${name}`);
@@ -52,6 +51,13 @@ export function filterByCreated(payload) {
   console.log("PAYLOAD ACTIONS ", payload);
   return {
     type: FILTER_BY_CREATED,
+    payload,
+  };
+}
+
+export function filteredByAlf(payload) {
+  return {
+    type: FILTER_BY_ALF,
     payload,
   };
 }

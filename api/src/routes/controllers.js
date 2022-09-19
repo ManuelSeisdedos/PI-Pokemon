@@ -14,6 +14,7 @@ const getPokesApi = async () => {
       name: e.data.name,
       image: e.data.sprites.other["official-artwork"].front_default,
       type: e.data.types.map((e) => e.type.name),
+      created: false,
     })
   );
 
@@ -35,6 +36,7 @@ const getDbPokes = async () => {
       name: e.name,
       image: e.image,
       type: e.types.map((e) => e["tipo"]),
+      created: "true",
     })
   );
   return resultado;
@@ -107,12 +109,12 @@ const getTypesPokeApi = async () => {
       tipo: e.name,
     })
   );
-
-  result.forEach((e) => {
-    Type.findOrCreate({
-      where: { tipo: e.tipo },
-    });
-  });
+  await Type.bulkCreate(result);
+  // result.forEach((e) => {
+  //   Type.findOrCreate({
+  //     where: { tipo: e.tipo },
+  //   });
+  // });
   const pokeType = await Type.findAll();
   return pokeType;
 };
