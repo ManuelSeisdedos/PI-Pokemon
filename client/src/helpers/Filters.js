@@ -108,3 +108,11 @@ export const newPokemon = async (allPokemons, payload) => {
 
   return await axios.post("http://localhost:3001/pokemons", payload);
 };
+
+// export const pokemonDetail = async (id) => {
+//   try {
+//     await axios.get(`http://localhost:3001/pokemons/${id}`);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };

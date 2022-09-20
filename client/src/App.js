@@ -1,6 +1,6 @@
 import "./App.css";
 import { SinglePokemon } from "./components/SinglePokemon";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, useRouteMatch } from "react-router-dom";
 import Home from "./components/Home";
 import { LandingPage } from "./components/LandingPage";
 import { NavBar } from "./components/NavBar";
@@ -14,8 +14,9 @@ function App() {
           <Route exact path="/" component={LandingPage} />
           <Route path="/" component={NavBar} />
         </Switch>
-        <Route path="/home" component={Home} />
+        <Route exact path="/home" component={Home} />
         <Route path="/create" component={PokemonForm} />
+        <Route path="/pokemon/:id" component={SinglePokemon} />
       </div>
     </BrowserRouter>
   );

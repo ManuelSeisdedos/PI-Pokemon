@@ -16,6 +16,8 @@ import {
   FILTER_BY_CREATED,
   FILTER_BY_ALF,
   FILTER_BY_ATK,
+  GET_POKEMON_DETAIL,
+  DELETE_POKEMON,
 } from "../actions";
 
 const initialState = {
@@ -23,6 +25,7 @@ const initialState = {
   allPokemons: [],
   filteredPokes: [],
   types: [],
+  pokeDetail: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -70,6 +73,16 @@ export default function reducer(state = initialState, action) {
     case POST_POKEMON:
       return {
         ...state,
+      };
+    case GET_POKEMON_DETAIL:
+      return {
+        ...state,
+        pokeDetail: action.payload,
+      };
+    case DELETE_POKEMON:
+      return {
+        ...state,
+        pokeDetail: {},
       };
     default:
       return state;

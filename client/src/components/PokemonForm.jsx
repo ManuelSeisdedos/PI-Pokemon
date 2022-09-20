@@ -8,7 +8,6 @@ export function PokemonForm() {
   const history = useHistory();
   const types = useSelector((state) => state.types);
   const [errors, setErrors] = useState({});
-  console.log(types);
   const [input, setInput] = useState({
     name: "",
     image: "",
@@ -40,7 +39,7 @@ export function PokemonForm() {
       type: [...input.type, e.target.value],
     });
   };
-
+  console.log("types -->", input.type);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(postPokemon(input));
@@ -60,37 +59,26 @@ export function PokemonForm() {
     history.push("/home");
   };
 
+  const handleDelete = (type) => {
+    console.log("type delete ->", type);
+    setInput({
+      ...input,
+      type: input.type.filter((el) => el !== type),
+    });
+  };
+
   function validate(input) {
     let errors = {};
     if (!input.name) {
-      return (errors.name = "A pokemon name is required");
-    }
-    if (input.name.length > 15) {
-      return (errors.name = "The pokemon name is too long");
-    }
-    if (typeof input.name !== "string") {
-      return (errors.name = "Pokemon name mistake");
-    }
-    if (typeof input.vida !== "number") {
-      return (errors.vida = "A number es required");
-    }
-    if (typeof input.ataque !== "number") {
-      return (errors.ataque = "A number es required");
-    }
-    if (typeof input.defensa !== "number") {
-      return (errors.defensa = "A number es required");
-    }
-    if (typeof input.velocidad !== "number") {
-      return (errors.velocidad = "A number es required");
-    }
-    if (typeof input.altura !== "number") {
-      return (errors.altura = "A number es required");
-    }
-    if (typeof input.peso !== "number") {
-      return (errors.peso = "A number es required");
+      errors.name = "A pokemon name is required";
+    } else if (input.name.length > 15) {
+      errors.name = "The pokemon name is too long";
+    } else if (typeof input.name !== "string") {
+      errors.name = "Pokemon name mistake";
     }
     return errors;
   }
+
   return (
     <div>
       <Link to="/home">
@@ -104,6 +92,7 @@ export function PokemonForm() {
             value={input.name}
             name="name"
             onChange={(e) => handleChange(e)}
+            maxLength="15"
           />
           {errors.name && <p className="error">{errors.name}</p>}
         </div>
@@ -202,12 +191,16 @@ export function PokemonForm() {
             <option value="shadow">Shadow</option>
           </select>
         </div>
-        <ul>
-          <li>{input.type.map((e) => e + " ,")}</li>
-        </ul>
-
         <button type="submit"> Create Pokemon</button>
       </form>
+      {input.type.map((el) => (
+        <div>
+          <p key={el.id}>{el}</p>
+          <button type="onClick" onClick={() => handleDelete(el)}>
+            x
+          </button>
+        </div>
+      ))}
     </div>
   );
 }

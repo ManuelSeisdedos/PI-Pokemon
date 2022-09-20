@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPokemons, filterPokemonByType } from "../store/actions";
 import PokemonCard from "./PokemonCard";
 import Paginado from "./Paginado";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const pokemons = useSelector((state) => state.pokemons); // TRAE TODO LO QUE ESTA EN EL ESTADO DE POKEMONS
@@ -41,12 +42,16 @@ export default function Home() {
     <div>
       {currentPokemons.length >= 1 &&
         currentPokemons.map((p, index) => (
+          //<Link to={"/" + p.id}>
+
           <PokemonCard
             name={p.name}
             image={p.image}
             types={p.type}
             key={`pokemon-${index}`}
+            id={p.id}
           />
+          //</Link>
         ))}
       <button onClick={(e) => handleClick(e)}> GET POKES </button>
       <Paginado

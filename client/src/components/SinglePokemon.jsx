@@ -1,47 +1,41 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getOnePoke } from "../store/actions";
+import { deletePoke, getPokemonDetail } from "../store/actions";
 
-export function SinglePokemon(name) {
-  const poke = useSelector((state) => state.filteredPokes);
+export function SinglePokemon({ match }) {
+  const pokeDetail = useSelector((state) => state.pokeDetail);
+  const propiedades = match.params.id;
+  console.log(pokeDetail);
+
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getOnePoke());
-  }, []);
-  console.log(poke);
+    dispatch(getPokemonDetail(propiedades));
+    return dispatch(deletePoke());
+  }, [dispatch]);
+  console.log(propiedades);
 
   return (
     <div>
-      <img src={poke.image} alt="" />
-      <h1>{poke.name}</h1>
-      <h3>{poke.type}</h3>
-      <h3>{poke.id}</h3>
-      <li>
-        <ol>HP: {poke.hp}</ol>
-        <ol>attack: {poke.attack}</ol>
-        <ol>defense: {poke.defense}</ol>
-        <ol>speed: {poke.velocidad}</ol>
-        <ol>height: {poke.height}</ol>
-        <ol>weight: {poke.weight} </ol>
-      </li>
+      {pokeDetail.stats?.vida && (
+        <div>
+          <img src={pokeDetail.image} alt="" />
+          <h1>{pokeDetail.name}</h1>
+          <h3>{pokeDetail.type.map((e) => e + " ")}</h3>
+          <h3>{pokeDetail.id}</h3>
+          <li>
+            <ol>HP: {pokeDetail.stats.vida}</ol>
+            <ol>attack: {pokeDetail.stats.attack}</ol>
+            <ol>defense: {pokeDetail.stats.defense}</ol>
+            <ol>speed: {pokeDetail.stats.speed}</ol>
+            <ol>height: {pokeDetail.height}</ol>
+            <ol>weight: {pokeDetail.weight} </ol>
+          </li>
+        </div>
+      )}
+      <Link to="/home">
+        <button>Back</button>
+      </Link>
     </div>
   );
 }
-
-// import { useEffect } from "react";
-// import { useSelector, useDispatch } from "react-redux";
-// import { getPokemons } from "../store/actions";
-// import PokemonCard from "./PokemonCard";
-
-// export default function Home() {
-//   return (
-//     <div>
-//       <h4>Soy MAMUELON</h4>
-//       {pokemons.length >= 1 &&
-//         pokemons.map((p) => (
-//           <PokemonCard name={p.name} image={p.image} types={p.type} />
-//         ))}
-//       <button onClick={() => dispatch(getPokemons())}> GET POKES </button>
-//     </div>
-//   );
-// }
