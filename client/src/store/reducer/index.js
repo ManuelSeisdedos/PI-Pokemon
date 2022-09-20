@@ -4,6 +4,7 @@ import {
   filterForCreated,
   filterForNameOrId,
   filterForAlf,
+  filterForAtk,
 } from "../../helpers/Filters";
 import {
   GET_POKEMONS,
@@ -14,6 +15,7 @@ import {
   FILTER_BY_NAME,
   FILTER_BY_CREATED,
   FILTER_BY_ALF,
+  FILTER_BY_ATK,
 } from "../actions";
 
 const initialState = {
@@ -55,13 +57,15 @@ export default function reducer(state = initialState, action) {
       };
 
     case FILTER_BY_ALF:
-      console.log(
-        " alf poke --> ",
-        filterForAlf(state.allPokemons, action.payload)
-      );
       return {
         ...state,
         pokemons: filterForAlf(state.allPokemons, action.payload),
+      };
+    case FILTER_BY_ATK:
+      return {
+        ...state,
+
+        pokemons: filterForAtk(state.allPokemons, action.payload),
       };
     default:
       return state;

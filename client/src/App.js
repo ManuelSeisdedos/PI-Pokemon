@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import { LandingPage } from "./components/LandingPage";
 import { NavBar } from "./components/NavBar";
+import { PokemonForm } from "./components/PokemonForm";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" component={NavBar} />
         </Switch>
         <Route path="/home" component={Home} />
+        <Route path="/create" component={PokemonForm} />
       </div>
     </BrowserRouter>
   );

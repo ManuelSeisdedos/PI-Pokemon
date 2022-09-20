@@ -6,6 +6,8 @@ export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_CREATED = "FILTER_BY_CREATED";
 export const FILTER_BY_ALF = "FILTER_BY_ALF";
+export const FILTER_BY_ATK = "FILTER_BY_ATK";
+export const POST_POKEMON = "POST_POKEMON";
 
 export function getPokemons() {
   return async (dispatch) => {
@@ -48,7 +50,6 @@ export function filteredByName(payload) {
 }
 
 export function filterByCreated(payload) {
-  console.log("PAYLOAD ACTIONS ", payload);
   return {
     type: FILTER_BY_CREATED,
     payload,
@@ -59,5 +60,19 @@ export function filteredByAlf(payload) {
   return {
     type: FILTER_BY_ALF,
     payload,
+  };
+}
+
+export function filterByAtk(payload) {
+  return {
+    type: FILTER_BY_ATK,
+    payload,
+  };
+}
+
+export function postPokemon(input) {
+  return {
+    type: POST_POKEMON,
+    payload: input,
   };
 }

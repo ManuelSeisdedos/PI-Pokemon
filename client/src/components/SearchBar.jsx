@@ -8,6 +8,7 @@ const SearchBar = () => {
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
+    e.preventDefault();
     setPokemon(e.target.value);
   };
 

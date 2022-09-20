@@ -3,6 +3,7 @@ import {
   filterPokemonByType,
   filterByCreated,
   filteredByAlf,
+  filterByAtk,
 } from "../store/actions";
 import { useDispatch } from "react-redux";
 
@@ -19,6 +20,11 @@ export function Filtrado() {
   function handleFilteredAlf(e) {
     dispatch(filteredByAlf(e.target.value));
   }
+
+  function handleFilteredAttack(e) {
+    dispatch(filterByAtk(e.target.value));
+  }
+
   return (
     <div>
       <div>
@@ -37,7 +43,7 @@ export function Filtrado() {
       </div>
 
       <div>
-        <select>
+        <select onChange={(e) => handleFilteredAttack(e)}>
           <option value="all">Sort by Attack</option>
           <option value="attackasc">Ataque Ascendente</option>
           <option value="attackdesc">Ataque Descendente</option>

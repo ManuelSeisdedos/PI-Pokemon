@@ -15,6 +15,7 @@ const getPokesApi = async () => {
       image: e.data.sprites.other["official-artwork"].front_default,
       type: e.data.types.map((e) => e.type.name),
       created: false,
+      attack: e.data.stats[1].base_stat,
     })
   );
 
@@ -37,6 +38,7 @@ const getDbPokes = async () => {
       image: e.image,
       type: e.types.map((e) => e["tipo"]),
       created: "true",
+      attack: e.ataque,
     })
   );
   return resultado;

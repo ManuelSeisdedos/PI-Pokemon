@@ -32,7 +32,7 @@ export function filterForCreated(allPokemons, payload) {
   return [];
 }
 
-const ordenedAttackAsc = (pokemonOrdenar) =>
+const ordenedAlfAsc = (pokemonOrdenar) =>
   pokemonOrdenar.sort((a, b) => {
     // a.name = a.name.toLowerCase();
     // b.name = b.name.toLowerCase();
@@ -45,36 +45,57 @@ const ordenedAttackAsc = (pokemonOrdenar) =>
     return 0;
   });
 
-const ordenedAttackDesc = (pokemonOrdenar) =>
+const ordenedAlfDesc = (pokemonOrdenar) =>
   pokemonOrdenar.sort((a, b) => {
-    // a.name = a.name.toLowerCase();
-    // b.name = b.name.toLowerCase();
-    if (a.name.toLowerCase() < b.name.toLowerCase()) {
+    a.name = a.name;
+    b.name = b.name;
+    if (a.name < b.name) {
       return 1;
     }
-    if (a.name.toLowerCase() > b.name.toLowerCase()) {
+    if (a.name > b.name) {
       return -1;
     }
     return 0;
   });
-
-// export function filterForAlf(allPokemons, payload) {
-//   const pokemonOrdenar = allPokemons;
-
-//   if (payload === "asc") {
-//     console.log("ORDENADO", ordenedAttackAsc(pokemonOrdenar));
-//     return ordenedAttackAsc(pokemonOrdenar);
-//   } else if (payload === "desc") {
-//     return ordenedAttackDesc(pokemonOrdenar);
-//   } else {
-//     return allPokemons;
-//   }
-// }
 
 export const filterForAlf = (allPokemons, order) => {
   const pokemonOrdenar = [...allPokemons];
 
   return order === "asc"
-    ? ordenedAttackAsc(pokemonOrdenar)
-    : ordenedAttackDesc(pokemonOrdenar);
+    ? ordenedAlfAsc(pokemonOrdenar)
+    : ordenedAlfDesc(pokemonOrdenar);
+};
+
+const filtradoPorAtaqueAscendente = (pokemonOrdenar) => {
+  const pokemonOrdenados = pokemonOrdenar.sort((a, b) => {
+    if (a.attack < b.attack) {
+      return 1;
+    }
+    if (a.attack > b.attack) {
+      return -1;
+    }
+    return 0;
+  });
+  console.log("POKEMON ORDENADOS", pokemonOrdenados);
+  return pokemonOrdenados;
+};
+
+const filtradoPorAtaqueDescendente = (pokemonOrdenar) => {
+  const pokemonOrdenados = pokemonOrdenar.sort((a, b) => {
+    a = a.attack;
+    b = b.attack;
+    if (a > b) return 1;
+    if (a < b) return -1;
+    return 0;
+  });
+
+  return pokemonOrdenados;
+};
+
+export const filterForAtk = (allPokemons, payload) => {
+  const pokemonOrdenar = [...allPokemons];
+  console.log(payload);
+  return payload === "attackasc"
+    ? filtradoPorAtaqueAscendente(pokemonOrdenar)
+    : filtradoPorAtaqueDescendente(pokemonOrdenar);
 };
