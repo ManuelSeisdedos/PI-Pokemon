@@ -1,3 +1,4 @@
+import { newPokemon } from "../../helpers/Filters";
 import axios from "axios";
 const LOCAL = "http://localhost:3001/";
 export const GET_POKEMONS = "GET_POKEMONS";
@@ -8,7 +9,6 @@ export const FILTER_BY_CREATED = "FILTER_BY_CREATED";
 export const FILTER_BY_ALF = "FILTER_BY_ALF";
 export const FILTER_BY_ATK = "FILTER_BY_ATK";
 export const POST_POKEMON = "POST_POKEMON";
-
 export function getPokemons() {
   return async (dispatch) => {
     try {
@@ -73,6 +73,6 @@ export function filterByAtk(payload) {
 export function postPokemon(input) {
   return {
     type: POST_POKEMON,
-    payload: input,
+    payload: newPokemon(" ", input),
   };
 }

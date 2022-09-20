@@ -1,10 +1,10 @@
 import {
-  filterForName,
   filterForType,
   filterForCreated,
   filterForNameOrId,
   filterForAlf,
   filterForAtk,
+  newPokemon,
 } from "../../helpers/Filters";
 import {
   GET_POKEMONS,
@@ -66,6 +66,10 @@ export default function reducer(state = initialState, action) {
         ...state,
 
         pokemons: filterForAtk(state.allPokemons, action.payload),
+      };
+    case POST_POKEMON:
+      return {
+        ...state,
       };
     default:
       return state;

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import { postPokemon } from "../store/actions";
 
 export function PokemonForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const types = useSelector((state) => state.types);
+  const [errors, setErrors] = useState({});
   console.log(types);
   const [input, setInput] = useState({
     name: "",
@@ -24,6 +26,12 @@ export function PokemonForm() {
       ...input,
       [e.target.name]: e.target.value,
     });
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
   const handleSelect = (e) => {
@@ -48,8 +56,41 @@ export function PokemonForm() {
       altura: "",
       peso: "",
     });
+
     history.push("/home");
   };
+
+  function validate(input) {
+    let errors = {};
+    if (!input.name) {
+      return (errors.name = "A pokemon name is required");
+    }
+    if (input.name.length > 15) {
+      return (errors.name = "The pokemon name is too long");
+    }
+    if (typeof input.name !== "string") {
+      return (errors.name = "Pokemon name mistake");
+    }
+    if (typeof input.vida !== "number") {
+      return (errors.vida = "A number es required");
+    }
+    if (typeof input.ataque !== "number") {
+      return (errors.ataque = "A number es required");
+    }
+    if (typeof input.defensa !== "number") {
+      return (errors.defensa = "A number es required");
+    }
+    if (typeof input.velocidad !== "number") {
+      return (errors.velocidad = "A number es required");
+    }
+    if (typeof input.altura !== "number") {
+      return (errors.altura = "A number es required");
+    }
+    if (typeof input.peso !== "number") {
+      return (errors.peso = "A number es required");
+    }
+    return errors;
+  }
   return (
     <div>
       <Link to="/home">
@@ -64,6 +105,7 @@ export function PokemonForm() {
             name="name"
             onChange={(e) => handleChange(e)}
           />
+          {errors.name && <p className="error">{errors.name}</p>}
         </div>
         <div>
           <label>Health Points: </label>
@@ -73,6 +115,7 @@ export function PokemonForm() {
             name="vida"
             onChange={(e) => handleChange(e)}
           />
+          {errors.vida && <p className="error">{errors.vida}</p>}
         </div>
         <div>
           <label>Attack: </label>
@@ -82,6 +125,7 @@ export function PokemonForm() {
             name="ataque"
             onChange={(e) => handleChange(e)}
           />
+          {errors.ataque && <p className="error">{errors.ataque}</p>}
         </div>
         <div>
           <label>Defense: </label>
@@ -91,6 +135,7 @@ export function PokemonForm() {
             name="defensa"
             onChange={(e) => handleChange(e)}
           />
+          {errors.defensa && <p className="error">{errors.defensa}</p>}
         </div>
         <div>
           <label>Speed: </label>
@@ -100,6 +145,7 @@ export function PokemonForm() {
             name="velocidad"
             onChange={(e) => handleChange(e)}
           />
+          {errors.velocidad && <p className="error">{errors.velocidad}</p>}
         </div>
         <div>
           <label>Height: </label>
@@ -109,6 +155,7 @@ export function PokemonForm() {
             name="altura"
             onChange={(e) => handleChange(e)}
           />
+          {errors.altura && <p className="error">{errors.altura}</p>}
         </div>
         <div>
           <label>Weight: </label>
@@ -118,6 +165,7 @@ export function PokemonForm() {
             name="peso"
             onChange={(e) => handleChange(e)}
           />
+          {errors.peso && <p className="error">{errors.peso}</p>}
         </div>
         <div>
           <label>Image: </label>
@@ -157,9 +205,8 @@ export function PokemonForm() {
         <ul>
           <li>{input.type.map((e) => e + " ,")}</li>
         </ul>
-        <Link to="/home">
-          <button type="submit"> Create Pokemon</button>
-        </Link>
+
+        <button type="submit"> Create Pokemon</button>
       </form>
     </div>
   );

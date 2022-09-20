@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export function filterForType(allPokemons, type) {
   return type === "all"
     ? allPokemons
@@ -98,4 +100,11 @@ export const filterForAtk = (allPokemons, payload) => {
   return payload === "attackasc"
     ? filtradoPorAtaqueAscendente(pokemonOrdenar)
     : filtradoPorAtaqueDescendente(pokemonOrdenar);
+};
+
+export const newPokemon = async (allPokemons, payload) => {
+  const { name, image, type, vida, ataque, defensa, velocidad, altura, peso } =
+    payload;
+
+  return await axios.post("http://localhost:3001/pokemons", payload);
 };

@@ -39,6 +39,9 @@ router.post("/", async (req, res, next) => {
     type,
     image,
   } = req.body;
+  const result = [];
+  type.map((e) => result.push(e));
+  console.log(result);
   const newPokemon = await Pokemon.create({
     id,
     name,
@@ -50,13 +53,17 @@ router.post("/", async (req, res, next) => {
     peso,
     image,
   });
+  const resultado = result.map((e) =>
+    Type.findOne({
+      where: { tipo: e },
+    })
+  );
 
-  const tipo = await Type.findOne({
-    where: { tipo: type },
-  });
+  const tiposResueltos = await Promise.all(resultado);
 
-  if (type) {
-    await newPokemon.addType(tipo);
+  if (tiposResueltos) {
+    const promesa = tiposResueltos.map((e) => newPokemon.addType(e));
+    await Promise.all(promesa);
   }
 
   res.json(newPokemon);
