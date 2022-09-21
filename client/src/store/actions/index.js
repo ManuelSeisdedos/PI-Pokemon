@@ -1,5 +1,6 @@
 import { newPokemon } from "../../helpers/Filters";
 import axios from "axios";
+
 const LOCAL = "http://localhost:3001/";
 export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_POKE = "GET_POKE";
@@ -11,6 +12,8 @@ export const FILTER_BY_ATK = "FILTER_BY_ATK";
 export const POST_POKEMON = "POST_POKEMON";
 export const DELETE_POKEMON = "DELETE_POKEMON";
 export const GET_POKEMON_DETAIL = "GET_POKEMON_DETAIL";
+export const GET_TYPES = "GET_TYPES"
+
 export function getPokemons() {
   return async (dispatch) => {
     try {
@@ -97,3 +100,4 @@ export function deletePoke() {
     payload: {},
   };
 }
+

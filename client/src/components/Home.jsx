@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPokemons, filterPokemonByType } from "../store/actions";
+import { getPokemons, filterPokemonByType,getTypes } from "../store/actions";
 import PokemonCard from "./PokemonCard";
 import Paginado from "./Paginado";
 import { Link } from "react-router-dom";
+
 
 export default function Home() {
   const pokemons = useSelector((state) => state.pokemons); // TRAE TODO LO QUE ESTA EN EL ESTADO DE POKEMONS
@@ -30,14 +31,15 @@ export default function Home() {
   };
 
   useEffect(() => {
-    dispatch(getPokemons());
+    dispatch(getPokemons())
+
   }, []);
 
   function handleClick(e) {
     e.preventDefault();
     dispatch(getPokemons());
   }
-
+ 
   return (
     <div>
       {currentPokemons.length >= 1 &&
