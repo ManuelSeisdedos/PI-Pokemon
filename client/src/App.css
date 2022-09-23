@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.back {
+  background-image: url("./images/POKEMON.png");
+  background-repeat: repeat;
+}
+
+.row {
+  display: block;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#principal {
+  justify-content: right;
+  width: 75%;
+}

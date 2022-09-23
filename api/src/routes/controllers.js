@@ -29,7 +29,7 @@ const getDbPokes = async () => {
       attributes: ["tipo"],
     },
   });
-  console.log("resul pk db -->", result);
+
   const resultado = [];
   const allPokesDb = result.map((e) =>
     resultado.push({

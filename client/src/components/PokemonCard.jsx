@@ -11,9 +11,11 @@ export default function PokemonCard({ name, image, types, id }) {
           <h3> {name} </h3>
         </div>
       </Link>
-      {types.map((e, index) => (
-        <h3 key={`type-${index}`}>{e}</h3>
-      ))}
+      <div id="row">
+        {types.map((e, index) => (
+          <h3 key={`type-${index}`}>{e}</h3>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,0 +1,9 @@
+#row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#row > div {
+  width: 50%;
+}
