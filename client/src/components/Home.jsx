@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPokemons, filterPokemonByType } from "../store/actions";
-import PokemonCard from "./PokemonCard";
+import PokemonCard from "./PokemonCard.jsx";
 import Paginado from "./Paginado";
 import { Link } from "react-router-dom";
 
@@ -40,19 +40,21 @@ export default function Home() {
 
   return (
     <div>
-      {currentPokemons.length >= 1 &&
-        currentPokemons.map((p, index) => (
-          //<Link to={"/" + p.id}>
+      <div>
+        {currentPokemons.length >= 1 &&
+          currentPokemons.map((p, index) => (
+            //<Link to={"/" + p.id}>
 
-          <PokemonCard
-            name={p.name}
-            image={p.image}
-            types={p.type}
-            key={`pokemon-${index}`}
-            id={p.id}
-          />
-          //</Link>
-        ))}
+            <PokemonCard
+              name={p.name}
+              image={p.image}
+              types={p.type}
+              key={`pokemon-${index}`}
+              id={p.id}
+            />
+            //</Link>
+          ))}
+      </div>
       <button onClick={(e) => handleClick(e)}> GET POKES </button>
       <Paginado
         pokemonsPerPage={pokemonsPerPage}

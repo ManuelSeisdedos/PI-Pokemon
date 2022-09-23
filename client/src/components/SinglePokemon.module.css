@@ -1,0 +1,38 @@
+#back {
+  background-image: url("../images/3pokebolasjpg.jpg");
+  background-repeat: repeat;
+}
+
+.container {
+  display: inline-flex;
+  height: 100%;
+  align-items: center;
+  padding: 10%;
+  width: 100%;
+}
+
+.nametipe {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+#img {
+  margin: 0%;
+}
+
+#types {
+  align-items: center;
+  padding-left: 20%;
+}
+
+#stats {
+  display: flex;
+  flex-direction: column;
+}
+
+#button {
+  align-items: left;
+  color: red;
+}

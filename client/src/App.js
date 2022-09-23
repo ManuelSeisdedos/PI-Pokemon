@@ -5,18 +5,23 @@ import Home from "./components/Home";
 import { LandingPage } from "./components/LandingPage";
 import { NavBar } from "./components/NavBar";
 import { PokemonForm } from "./components/PokemonForm";
+import s from "./components/Home.module.css";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div>
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route path="/" component={NavBar} />
+          <div>
+            <Route path="/" component={NavBar} />
+          </div>
         </Switch>
-        <Route exact path="/home" component={Home} />
-        <Route path="/create" component={PokemonForm} />
-        <Route path="/pokemon/:id" component={SinglePokemon} />
+        <div id={s.principal}>
+          <Route exact path="/home" component={Home} />
+          <Route path="/create" component={PokemonForm} />
+          <Route path="/pokemon/:id" component={SinglePokemon} />
+        </div>
       </div>
     </BrowserRouter>
   );

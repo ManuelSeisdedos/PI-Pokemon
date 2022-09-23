@@ -1,0 +1,18 @@
+.back {
+  background-image: url("./images/3pokebolasjpg.jpg");
+  background-repeat: repeat;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+#principal {
+  width: 20%;
+}
+
+#nav {
+  width: 80%;
+  background-color: red;
+}

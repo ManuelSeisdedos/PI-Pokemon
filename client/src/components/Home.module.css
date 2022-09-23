@@ -1,0 +1,25 @@
+.back {
+  background-image: url("../images/3pokebolas.png");
+  background-size: 10px 10px;
+  background-repeat: repeat;
+}
+
+.cuadricula {
+  display: grid;
+  grid-template-columns: repeat(1fr 1fr 1fr);
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#principal {
+  width: 75%;
+}
+
+#nav {
+  width: 25%;
+  background-color: red;
+}

@@ -1,0 +1,35 @@
+.nav {
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100vh;
+  background-color: red;
+  align-items: space-between;
+}
+
+#img {
+  width: 100%;
+}
+
+#search {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  padding: 5% 0%;
+}
+
+#filter {
+  display: grid;
+  justify-content: center;
+  width: 100%;
+}
+
+#button {
+  display: grid;
+  justify-content: center;
+  width: 100%;
+  padding: 5% 0%;
+}
