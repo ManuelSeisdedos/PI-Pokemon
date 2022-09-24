@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-<<<<<<< HEAD
-import { getPokemons, filterPokemonByType,getTypes } from "../store/actions";
-import PokemonCard from "./PokemonCard";
-=======
 import { getPokemons, filterPokemonByType } from "../store/actions";
 import PokemonCard from "./PokemonCard.jsx";
->>>>>>> bebf95e49e44c7187a19dcd7b92716ecd67e93b3
 import Paginado from "./Paginado";
 import { Link } from "react-router-dom";
-
+import s from "./Home.module.css"
 
 export default function Home() {
   const pokemons = useSelector((state) => state.pokemons); // TRAE TODO LO QUE ESTA EN EL ESTADO DE POKEMONS
@@ -46,11 +41,11 @@ export default function Home() {
   }
  
   return (
-    <div>
-      <div>
+    <div className={s.all}>
+      <div className={s.cards}>
         {currentPokemons.length >= 1 &&
           currentPokemons.map((p, index) => (
-            //<Link to={"/" + p.id}>
+            
 
             <PokemonCard
               name={p.name}
@@ -59,15 +54,19 @@ export default function Home() {
               key={`pokemon-${index}`}
               id={p.id}
             />
-            //</Link>
+            
           ))}
       </div>
-      <button onClick={(e) => handleClick(e)}> GET POKES </button>
+      <div >
       <Paginado
         pokemonsPerPage={pokemonsPerPage}
         pokemons={allPokemons.length}
         paginado={paginado}
       />
+      </div>
+      <div className={s.space}>
+      <button onClick={(e) => handleClick(e)} className={s.button}s> GET POKES </button>
+      </div>
     </div>
   );
 }

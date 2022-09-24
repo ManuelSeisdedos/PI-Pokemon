@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { postPokemon } from "../store/actions";
-
+import s from "./PokemonForm.module.css"
 export function PokemonForm() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -80,12 +80,12 @@ export function PokemonForm() {
   }
 
   return (
-    <div>
+    <div className={s.back}>
       <Link to="/home">
         <button>Home</button>
       </Link>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
+        <div >
           <label>Name: </label>
           <input
             type="text"
@@ -96,7 +96,7 @@ export function PokemonForm() {
           />
           {errors.name && <p className="error">{errors.name}</p>}
         </div>
-        <div>
+        <div >
           <label>Health Points: </label>
           <input
             type="number"
@@ -105,8 +105,7 @@ export function PokemonForm() {
             onChange={(e) => handleChange(e)}
           />
           {errors.vida && <p className="error">{errors.vida}</p>}
-        </div>
-        <div>
+        
           <label>Attack: </label>
           <input
             type="number"

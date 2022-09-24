@@ -5,12 +5,12 @@ import Home from "./components/Home";
 import { LandingPage } from "./components/LandingPage";
 import { NavBar } from "./components/NavBar";
 import { PokemonForm } from "./components/PokemonForm";
-import s from "./components/Home.module.css";
+import s from "./App.module.css";
 
 function App() {
   return (
     <BrowserRouter>
-      <div>
+      <div className={s.back}>
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <div>

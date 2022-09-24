@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import pokemon from "../images/POKEMON2.png";
+import pokemon from "../images/pngegg.png";
 import { Filtrado } from "./Filtrado";
 import SearchBar from "./SearchBar";
 import s from "./NavBar.module.css";
 export function NavBar() {
   return (
     <div className={s.nav}>
-      <div>
+      <div id={s.divimg}>
         <img src={pokemon} alt="" id={s.img} />
       </div>
       <div id={s.search}>
@@ -17,9 +17,10 @@ export function NavBar() {
       </div>
       <div id={s.button}>
         <Link to="/create">
-          <button> Create Pokemon</button>
+          <button className={s.create}> CREATE POKEMON</button>
         </Link>
       </div>
+      
     </div>
   );
 }

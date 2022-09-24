@@ -1,9 +1,9 @@
 .nav {
-  height: auto;
+
   position: fixed;
   top: 0;
   left: 0;
-  width: 30%;
+  width: 20%;
   height: 100vh;
   background-color: red;
   align-items: space-between;
@@ -11,25 +11,47 @@
 
 #img {
   width: 100%;
+  
+}
+
+#divimg {
+  padding: 2%;
+  margin-bottom: 10%;
 }
 
 #search {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100%;
-  padding: 5% 0%;
+  width: 85%;
+  padding-left: 0%;
+  padding-top: 5%;
+  margin-bottom: 15%;
 }
 
 #filter {
-  display: grid;
+ display: box;
   justify-content: center;
   width: 100%;
+  margin-bottom: 50%;
 }
 
 #button {
-  display: grid;
+  display: flex;
   justify-content: center;
   width: 100%;
   padding: 5% 0%;
+
+}
+
+.create {
+  padding: 1% 40%;
+  margin-left: -20%;
+  background-color: red;
+  border: 2px solid ;
+  border-color: white;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
 }
