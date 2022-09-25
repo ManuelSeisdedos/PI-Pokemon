@@ -1,38 +1,99 @@
 #back {
-  background-image: url("../images/3pokebolasjpg.jpg");
-  background-repeat: repeat;
+  height: 100vh;
+  width: 100%;
+  
 }
 
 .container {
-  display: inline-flex;
-  height: 100%;
-  align-items: center;
-  padding: 10%;
+  display: flex;
+  flex-direction: row;
+  margin: 0% 0% 0% 50%;
+  padding: 4% 0% 4% 0%
+}
+
+.stats{
   width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0% 0% 0% 40%;
 }
 
 .nametipe {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
   justify-content: center;
+  font-size: large;
+  color: #E3350D;
+  background-color: white;
+  border: 5px solid;
+  border-color: #E3350D;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.h1 {
+
+  padding-right: 10px;
+
+}
+.id {
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #E3350D;
+  color: white;
+  border: 2px solid;
+  border-color: #E3350D;
+  border-radius: 5px;
 }
 
 #img {
-  margin: 0%;
+  background-color: white;
+  border: 5px solid;
+  border-color: #E3350D;
+  border-radius: 5px;
 }
 
 #types {
-  align-items: center;
-  padding-left: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: white;
+  border: 5px solid;
+  border-color: #E3350D;
+  border-radius: 5px;
+  margin-top: 5px;
+
 }
 
 #stats {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  border: 5px solid;
+  border-color: #E3350D;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.boton {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-left: 70%;
+  
 }
 
 #button {
-  align-items: left;
-  color: red;
+ margin-bottom: 30px;
+ background-color: white;
+ border: 3px solid;
+ border-color: #E3350D;
+ border-radius: 5px;
+ padding: 5px 10px;
+ color: #E3350D;
+ font-weight: bold;
 }
