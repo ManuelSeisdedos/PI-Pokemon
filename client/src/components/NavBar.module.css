@@ -1,17 +1,15 @@
 .nav {
-
   position: fixed;
   top: 0;
   left: 0;
   width: 20%;
   height: 100vh;
-  background-color: #E3350D;
+  background-color: #e3350d;
   align-items: space-between;
 }
 
 #img {
   width: 100%;
-  
 }
 
 #divimg {
@@ -30,7 +28,6 @@
 }
 
 #filter {
- display: box;
   justify-content: center;
   width: 100%;
   margin-bottom: 50%;
@@ -41,14 +38,13 @@
   justify-content: center;
   width: 100%;
   padding: 5% 0%;
-
 }
 
 .create {
   padding: 1% 40%;
   margin-left: -20%;
-  background-color: #E3350D;
-  border: 2px solid ;
+  background-color: #e3350d;
+  border: 2px solid;
   border-color: white;
   color: white;
   font-weight: bold;

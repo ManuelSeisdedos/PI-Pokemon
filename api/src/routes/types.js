@@ -10,9 +10,9 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 router.get("/", async (req, res, next) => {
-  const types = await getPokesDb();
+  const types = await getTypesPokeApi();
 
-  res.status(200).json(types);
+  return res.status(200).json(types);
 });
 
 module.exports = router;

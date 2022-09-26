@@ -4,13 +4,12 @@ import {
   filterForNameOrId,
   filterForAlf,
   filterForAtk,
-  newPokemon,
 } from "../../helpers/Filters";
 import {
   GET_POKEMONS,
   POST_POKEMON,
-  GET_TYPES,
   GET_POKE,
+  GET_TYPES,
   FILTER_BY_TYPE,
   FILTER_BY_NAME,
   FILTER_BY_CREATED,
@@ -41,7 +40,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         filteredPokes: action.payload,
       };
-
+    case GET_TYPES:
+      return {
+        ...state,
+        types: action.payload.data,
+      };
     case FILTER_BY_TYPE:
       return {
         ...state,

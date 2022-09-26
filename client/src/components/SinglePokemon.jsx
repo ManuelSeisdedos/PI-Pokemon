@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { deletePoke, getPokemonDetail } from "../store/actions";
+import pokeImage from "../images/unknown.png.png";
 import s from "./SinglePokemon.module.css";
 
 export function SinglePokemon({ match }) {
@@ -9,20 +10,24 @@ export function SinglePokemon({ match }) {
   const propiedades = match.params.id;
   console.log("pokedetail -> ", pokeDetail);
 
+  const types = useSelector((state) => state.types);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPokemonDetail(propiedades));
     return dispatch(deletePoke());
-  }, [dispatch]);
-  console.log(propiedades);
-console.log(pokeDetail.id)
+  }, [propiedades, dispatch]);
 
   return (
     <div className={s.back}>
       {pokeDetail.stats?.vida && (
         <div className={s.container}>
           <div id={s.img}>
-            <img src={pokeDetail.image} alt="" />
+            {pokeDetail.image ? (
+              <img src={pokeDetail.image} alt="" />
+            ) : (
+              <img src={pokeImage} alt="" />
+            )}
           </div>
 
           <div className={s.stats}>
@@ -31,10 +36,11 @@ console.log(pokeDetail.id)
               <h1 className={s.id}>{propiedades}</h1>
             </div>
             <div id={s.types}>
-            {pokeDetail.type.map((e) => <h3 >{e + " "}</h3>)}
+              {pokeDetail.type.map((e) => (
+                <h3 key={e.index}>{e + " "}</h3>
+              ))}
             </div>
             <div id={s.stats}>
-              
               <ol>• Health Points: {pokeDetail.stats.vida}</ol>
               <ol>• Attack: {pokeDetail.stats.attack}</ol>
               <ol>• Defense: {pokeDetail.stats.defense}</ol>

@@ -16,6 +16,7 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.TEXT,
+      default: "../images/unknown.png.png",
     },
     vida: {
       type: DataTypes.INTEGER,

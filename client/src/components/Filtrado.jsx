@@ -1,14 +1,15 @@
-import { useState } from "react";
 import {
   filterPokemonByType,
   filterByCreated,
   filteredByAlf,
   filterByAtk,
 } from "../store/actions";
-import { useDispatch } from "react-redux";
-import s from "./Filtrado.module.css"
+import { useDispatch, useSelector } from "react-redux";
+import s from "./Filtrado.module.css";
 
 export function Filtrado() {
+  const types = useSelector((state) => state.types);
+
   const dispatch = useDispatch();
   function handleFilteredStatus(e) {
     dispatch(filterPokemonByType(e.target.value));
@@ -28,8 +29,8 @@ export function Filtrado() {
 
   return (
     <div>
-      <div >
-        <select onChange={(e) => handleFilteredExt(e)} id={s.box} >
+      <div>
+        <select onChange={(e) => handleFilteredExt(e)} id={s.box}>
           <option value="all">Native</option>
           <option value="pokemonexistente">Native Pokemon</option>
           <option value="pokemoncreado">Created Pokemon</option>

@@ -22,7 +22,7 @@ router.get("/:idPokemon", async (req, res) => {
   const { idPokemon } = req.params;
 
   const poke = await getPokeById(idPokemon);
-
+  console.log("POKEEEEEEEEEEE", poke);
   return res.status(200).json(poke);
 });
 
@@ -41,7 +41,7 @@ router.post("/", async (req, res, next) => {
   } = req.body;
   const result = [];
   type.map((e) => result.push(e));
-  console.log(result);
+
   const newPokemon = await Pokemon.create({
     id,
     name,
