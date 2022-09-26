@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { postPokemon } from "../store/actions";
-
+import s from "./PokemonForm.module.css"
 export function PokemonForm() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -80,94 +80,102 @@ export function PokemonForm() {
   }
 
   return (
-    <div>
+    <div className={s.back}>
       <Link to="/home">
-        <button>Home</button>
+        <button className={s.home}>Home</button>
       </Link>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <label>Name: </label>
+        <div >
+          <label className={s.label} >Name: </label>
           <input
             type="text"
+            placeholder="*"
             value={input.name}
             name="name"
             onChange={(e) => handleChange(e)}
             maxLength="15"
+            id={s.pad}
           />
-          {errors.name && <p className="error">{errors.name}</p>}
+          {errors.name && <p className={s.error}>{errors.name}</p>}
         </div>
-        <div>
-          <label>Health Points: </label>
+        <div >
+          <label  className={s.label} >Health Points: </label>
           <input
             type="number"
             value={input.vida}
             name="vida"
             onChange={(e) => handleChange(e)}
+            id={s.pad}
           />
           {errors.vida && <p className="error">{errors.vida}</p>}
-        </div>
-        <div>
-          <label>Attack: </label>
+        
+          <label  className={s.label}>Attack: </label>
           <input
             type="number"
             value={input.ataque}
             name="ataque"
             onChange={(e) => handleChange(e)}
+            id={s.pad}
           />
           {errors.ataque && <p className="error">{errors.ataque}</p>}
         </div>
         <div>
-          <label>Defense: </label>
+          <label  className={s.label}>Defense: </label>
           <input
             type="number"
             value={input.defensa}
             name="defensa"
             onChange={(e) => handleChange(e)}
+            id={s.pad}
           />
           {errors.defensa && <p className="error">{errors.defensa}</p>}
         </div>
         <div>
-          <label>Speed: </label>
+          <label  className={s.label}>Speed: </label>
           <input
             type="number"
             value={input.velocidad}
             name="velocidad"
             onChange={(e) => handleChange(e)}
+            id={s.pad}
           />
           {errors.velocidad && <p className="error">{errors.velocidad}</p>}
         </div>
         <div>
-          <label>Height: </label>
+          <label  className={s.label}>Height: </label>
           <input
             type="number"
             value={input.altura}
             name="altura"
             onChange={(e) => handleChange(e)}
+            id={s.pad}
           />
           {errors.altura && <p className="error">{errors.altura}</p>}
         </div>
         <div>
-          <label>Weight: </label>
+          <label  className={s.label}>Weight: </label>
           <input
             type="number"
             value={input.peso}
             name="peso"
             onChange={(e) => handleChange(e)}
+            id={s.pad}
           />
           {errors.peso && <p className="error">{errors.peso}</p>}
         </div>
         <div>
-          <label>Image: </label>
+          <label  className={s.label}>Image: </label>
           <input
             type="text"
             value={input.image}
             name="image"
             onChange={(e) => handleChange(e)}
+            id={s.pad}
           />
         </div>
         <div>
-          <label>Type: </label>
-          <select onChange={(e) => handleSelect(e)}>
+          <label  className={s.label}>Type: </label>
+          <select onChange={(e) => handleSelect(e)} id={s.types}>
             <option value="all">All</option>
             <option value="normal">Normal</option>
             <option value="fighting">Fighting</option>
@@ -191,16 +199,18 @@ export function PokemonForm() {
             <option value="shadow">Shadow</option>
           </select>
         </div>
-        <button type="submit"> Create Pokemon</button>
+        <button type="submit" className={s.create}> Create Pokemon</button>
       </form>
+      <div className={s.form}>
       {input.type.map((el) => (
-        <div>
-          <p key={el.id}>{el}</p>
-          <button type="onClick" onClick={() => handleDelete(el)}>
+        <div className={s.tipo}>
+          <button type="onClick" onClick={() => handleDelete(el)
+          }className={s.btnx}>
             x
           </button>
+          <p key={el.id} >{el}</p>
         </div>
-      ))}
+      ))}</div>
     </div>
   );
 }

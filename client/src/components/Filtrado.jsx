@@ -6,6 +6,7 @@ import {
   filterByAtk,
 } from "../store/actions";
 import { useDispatch } from "react-redux";
+import s from "./Filtrado.module.css"
 
 export function Filtrado() {
   const dispatch = useDispatch();
@@ -27,15 +28,15 @@ export function Filtrado() {
 
   return (
     <div>
-      <div>
-        <select onChange={(e) => handleFilteredExt(e)}>
+      <div >
+        <select onChange={(e) => handleFilteredExt(e)} id={s.box} >
           <option value="all">Native</option>
           <option value="pokemonexistente">Native Pokemon</option>
           <option value="pokemoncreado">Created Pokemon</option>
         </select>
       </div>
       <div>
-        <select onChange={(e) => handleFilteredAlf(e)}>
+        <select onChange={(e) => handleFilteredAlf(e)} id={s.box}>
           <option value="all">Sort Alphabetically</option>
           <option value="asc">A to Z</option>
           <option value="desc">Z to A</option>
@@ -43,14 +44,14 @@ export function Filtrado() {
       </div>
 
       <div>
-        <select onChange={(e) => handleFilteredAttack(e)}>
+        <select onChange={(e) => handleFilteredAttack(e)} id={s.box}>
           <option value="all">Sort by Attack</option>
           <option value="attackasc">Ataque Ascendente</option>
           <option value="attackdesc">Ataque Descendente</option>
         </select>
       </div>
       <div>
-        <select onChange={(e) => handleFilteredStatus(e)}>
+        <select onChange={(e) => handleFilteredStatus(e)} id={s.box}>
           <option value="all">All</option>
           <option value="normal">Normal</option>
           <option value="fighting">Fighting</option>

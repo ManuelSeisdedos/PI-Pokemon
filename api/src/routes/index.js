@@ -5,7 +5,7 @@ const pokemonRoute = require("./pokemons");
 const typesRoute = require("./types");
 const router = Router();
 
-getTypesPokeApi();
+//getTypesPokeApi();
 
 router.use("/pokemons", pokemonRoute);
 router.use("/types", typesRoute);

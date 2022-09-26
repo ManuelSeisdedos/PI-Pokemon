@@ -1,25 +1,30 @@
-.back {
-  background-image: url("../images/3pokebolas.png");
-  background-size: 10px 10px;
-  background-repeat: repeat;
+.all {
+  margin-left: 10vw;
+  padding-left: 10vw;
 }
 
-.cuadricula {
+.cards {
   display: grid;
-  grid-template-columns: repeat(1fr 1fr 1fr);
+  grid-template-columns: 20vw 20vw 20vw 20vw;
+  grid-template-rows: 20vw 20vw 20vw;
+  
 }
 
-.row {
+.button {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+ margin-left: 34vw;
+ padding: 1% 10%;
+ border-color: red;
+ border-radius: 7%;
+ background-color: white;
+ color: red;
+ font-weight: bold
 }
 
-#principal {
-  width: 75%;
+.space {
+  padding-bottom: 3%;
 }
 
-#nav {
-  width: 25%;
-  background-color: red;
-}

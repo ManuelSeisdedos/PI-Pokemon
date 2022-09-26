@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { filteredByName } from "../store/actions/index";
-
+import s from "./Searchbar.module.css"
 const SearchBar = () => {
   const [pokemon, setPokemon] = useState("");
 
@@ -19,14 +19,15 @@ const SearchBar = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={s.formulario}>
       <input
         type="search"
         placeholder="Search Pokemon"
         value={pokemon}
         onChange={handleChange}
+        id={s.buton}
       />
-      <button>Buscar </button>
+      <button id={s.boton}>Find </button>
     </form>
   );
 };
