@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { postPokemon } from "../store/actions";
@@ -6,8 +6,8 @@ import s from "./PokemonForm.module.css";
 export function PokemonForm() {
   const dispatch = useDispatch();
   const history = useHistory();
-  //
-  const [errors, setErrors] = useState({});
+
+  const [errors, setErrors] = useState({ validate: true });
   const [input, setInput] = useState({
     name: "",
     image: "",
@@ -38,6 +38,12 @@ export function PokemonForm() {
       ...input,
       type: [...input.type, e.target.value],
     });
+    setErrors(
+      validate({
+        ...input,
+        type: [...input.type, e.target.value],
+      })
+    );
   };
 
   const handleSubmit = (e) => {
@@ -46,7 +52,7 @@ export function PokemonForm() {
     alert("Pokemon Creado");
     setInput({
       name: "",
-      image: "",
+      image: null,
       type: [],
       vida: "",
       ataque: "",
@@ -60,7 +66,6 @@ export function PokemonForm() {
   };
 
   const handleDelete = (type) => {
-    console.log("type delete ->", type);
     setInput({
       ...input,
       type: input.type.filter((el) => el !== type),
@@ -68,17 +73,54 @@ export function PokemonForm() {
   };
 
   function validate(input) {
-    let errors = {};
+    let errors = { validate: true };
     if (!input.name) {
       errors.name = "A pokemon name is required";
-    } else if (input.name.length > 15) {
+    }
+    if (input.name.length > 15) {
       errors.name = "The pokemon name is too long";
-    } else if (typeof input.name !== "string") {
+    }
+    if (typeof input.name !== "string") {
       errors.name = "Pokemon name mistake";
+    }
+    if (!input.vida) {
+      errors.vida = "More characters needed";
+    }
+    if (!input.ataque) {
+      errors.ataque = "More characters needed";
+    }
+    if (!input.defensa) {
+      errors.defensa = "More characters needed";
+    }
+    if (!input.velocidad) {
+      errors.velocidad = "More characters needed";
+    }
+    if (!input.altura) {
+      errors.altura = "More characters needed";
+    }
+    if (!input.peso) {
+      errors.peso = "More characters needed";
+    }
+    if (!input.type.length >= 1) {
+      errors.type = "The pokemon needs a type";
+    }
+    if (
+      typeof input.name === "string" &&
+      input.name.length < 15 &&
+      input.type.length &&
+      input.name &&
+      input.vida &&
+      input.ataque &&
+      input.defensa &&
+      input.velocidad &&
+      input.altura &&
+      input.peso
+    ) {
+      errors.validate = false;
     }
     return errors;
   }
-
+  console.log("ERRORS --->", errors);
   return (
     <div className={s.back}>
       <Link to="/home">
@@ -199,7 +241,7 @@ export function PokemonForm() {
             <option value="shadow">Shadow</option>
           </select>
         </div>
-        <button type="submit" className={s.create}>
+        <button type="submit" disabled={errors.validate} className={s.create}>
           {" "}
           Create Pokemon
         </button>

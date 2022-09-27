@@ -20,10 +20,12 @@ router.get("/", async (req, res) => {
 
 router.get("/:idPokemon", async (req, res) => {
   const { idPokemon } = req.params;
-
-  const poke = await getPokeById(idPokemon);
-  console.log("POKEEEEEEEEEEE", poke);
-  return res.status(200).json(poke);
+  try {
+    const poke = await getPokeById(idPokemon);
+    return res.status(200).json(poke);
+  } catch (error) {
+    return res.status(404);
+  }
 });
 
 router.post("/", async (req, res, next) => {
@@ -39,34 +41,38 @@ router.post("/", async (req, res, next) => {
     type,
     image,
   } = req.body;
-  const result = [];
-  type.map((e) => result.push(e));
+  try {
+    const result = [];
+    type.map((e) => result.push(e));
 
-  const newPokemon = await Pokemon.create({
-    id,
-    name,
-    vida,
-    ataque,
-    defensa,
-    velocidad,
-    altura,
-    peso,
-    image,
-  });
-  const resultado = result.map((e) =>
-    Type.findOne({
-      where: { tipo: e },
-    })
-  );
+    const newPokemon = await Pokemon.create({
+      id,
+      name,
+      vida,
+      ataque,
+      defensa,
+      velocidad,
+      altura,
+      peso,
+      image,
+    });
+    const resultado = result.map((e) =>
+      Type.findOne({
+        where: { tipo: e },
+      })
+    );
 
-  const tiposResueltos = await Promise.all(resultado);
+    const tiposResueltos = await Promise.all(resultado);
 
-  if (tiposResueltos) {
-    const promesa = tiposResueltos.map((e) => newPokemon.addType(e));
-    await Promise.all(promesa);
+    if (tiposResueltos) {
+      const promesa = tiposResueltos.map((e) => newPokemon.addType(e));
+      await Promise.all(promesa);
+    }
+
+    res.status(200).json(newPokemon);
+  } catch (error) {
+    res.status(400).json({ error: error.messagge });
   }
-
-  res.json(newPokemon);
 });
 
 module.exports = router;

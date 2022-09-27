@@ -86,7 +86,7 @@ const getPokeByIdDb = async (id) => {
         attributes: ["tipo"],
       },
     });
-    console.log("POKEMOOOOOOOOOOOOON", pokemon.dataValues.types[0]);
+
     let poke = {
       name: pokemon.dataValues.name,
       image: pokemon.dataValues.image,
@@ -100,7 +100,7 @@ const getPokeByIdDb = async (id) => {
       weight: pokemon.dataValues.peso,
       height: pokemon.dataValues.altura,
     };
-    console.log(poke);
+
     if (poke) return poke;
     return "No existe un pokemon con este id.";
   } catch (error) {
@@ -111,9 +111,8 @@ const getPokeByIdDb = async (id) => {
 const getPokeById = async (id) => {
   const idParam = id;
   if (idParam.includes("-")) {
-    console.log("ACA");
     const poke = await getPokeByIdDb(id);
-    console.log("poke", poke);
+
     if (poke) return poke;
     else return "No existe un pokemon con este id";
   } else {
