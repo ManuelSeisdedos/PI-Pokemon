@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { postPokemon } from "../store/actions";
+import { postPokemon } from "../../store/actions";
 import s from "./PokemonForm.module.css";
 export function PokemonForm() {
   const dispatch = useDispatch();
@@ -34,6 +34,7 @@ export function PokemonForm() {
   };
 
   const handleSelect = (e) => {
+    if (input.type.length >= 2) return;
     setInput({
       ...input,
       type: [...input.type, e.target.value],

@@ -5,8 +5,8 @@
   align-items: center;
   height: 100vh;
   width: 100vw;
-  background-image: url("../images/2Xqv.gif");
-  background-repeat: repeat;
+  background-image: url("../../images/Landing/Siluetas.jpg");
+  background-position-x: 50%;
 }
 
 #img {
@@ -14,7 +14,7 @@
   max-height: 150px;
   max-width: 150px;
   position: absolute;
-  padding-left: 50vh;
+  padding-left: 20vh;
 }
 
 #enter {
@@ -27,4 +27,10 @@
   margin-bottom: 1%;
   padding-left: 100%;
   padding-right: 100%;
+  background-color: white;
+  border: 5px solid;
+  border-color: #982107;
+  border-radius: 5px;
+  padding: 5px;
+  font-family: "pokemonclassic";
 }

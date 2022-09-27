@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPokemons, getTypes } from "../store/actions";
-import PokemonCard from "./PokemonCard.jsx";
-import Paginado from "./Paginado";
+import { getPokemons, getTypes } from "../../store/actions";
+import PokemonCard from "../PokemonCard/PokemonCard.jsx";
+import Paginado from "../Paginado/Paginado.jsx";
 
 import s from "./Home.module.css";
 

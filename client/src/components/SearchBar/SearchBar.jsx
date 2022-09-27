@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { filteredByName } from "../store/actions/index";
-import s from "./Searchbar.module.css"
+import { filteredByName } from "../../store/actions/index";
+import s from "./Searchbar.module.css";
 const SearchBar = () => {
   const [pokemon, setPokemon] = useState("");
 
@@ -27,7 +27,7 @@ const SearchBar = () => {
         onChange={handleChange}
         id={s.buton}
       />
-      <button id={s.boton}>Find </button>
+      <button id={s.boton}>FIND </button>
     </form>
   );
 };

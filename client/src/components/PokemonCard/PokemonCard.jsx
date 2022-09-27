@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import pokeImage from "../images/unknown.png.png";
+import pokeImage from "../../images/unknown.png.png";
 import s from "./PokemonCard.module.css";
 export default function PokemonCard({ name, image, types, id }) {
   name = name.charAt(0).toUpperCase().concat(name.slice(1));

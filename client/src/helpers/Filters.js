@@ -1,4 +1,5 @@
 import axios from "axios";
+const LOCAL = "http://localhost:3001/";
 
 export function filterForType(allPokemons, type) {
   return type === "all"
@@ -108,4 +109,10 @@ export const newPokemon = async (allPokemons, payload) => {
 
 export const getTypesPokemon = async () => {
   return await axios.get("http://localhost:3001/types");
+};
+
+export const getDetailPoke = async (id) => {
+  const poke = await axios.get(`${LOCAL}pokemons/${id}`);
+
+  return poke;
 };

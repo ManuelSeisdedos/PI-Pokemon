@@ -89,6 +89,7 @@ const getPokeByIdDb = async (id) => {
 
     let poke = {
       name: pokemon.dataValues.name,
+
       image: pokemon.dataValues.image,
       type: pokemon.dataValues.types.map((e) => e.dataValues.tipo),
       stats: {

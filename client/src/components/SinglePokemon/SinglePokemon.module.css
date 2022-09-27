@@ -1,56 +1,62 @@
+@font-face {
+  font-family: "pokemonclassic";
+  src: url("../../fuentes/PokemonClassic.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
 #back {
   height: 100vh;
   width: 100%;
-  
 }
 
 .container {
   display: flex;
   flex-direction: row;
   margin: 0% 0% 0% 50%;
-  padding: 4% 0% 4% 0%
+  padding: 4% 0% 4% 0%;
 }
 
-.stats{
+.stats {
   width: 100%;
   align-items: center;
   justify-content: space-between;
   padding: 0% 0% 0% 40%;
+  font-family: "pokemonclassic";
 }
 
 .nametipe {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  font-size: large;
-  color: #E3350D;
+  font-size: small;
+  color: #e3350d;
   background-color: white;
   border: 5px solid;
-  border-color: #E3350D;
+  border-color: #e3350d;
   border-radius: 5px;
   padding-left: 10px;
   padding-right: 10px;
+  font-family: "pokemonclassic";
 }
 
 .h1 {
-
   padding-right: 10px;
-
 }
 .id {
   padding-left: 10px;
   padding-right: 10px;
-  background-color: #E3350D;
+  background-color: #e3350d;
   color: white;
   border: 2px solid;
-  border-color: #E3350D;
+  border-color: #e3350d;
   border-radius: 5px;
 }
 
 #img {
   background-color: white;
   border: 5px solid;
-  border-color: #E3350D;
+  border-color: #e3350d;
   border-radius: 5px;
 }
 
@@ -60,22 +66,24 @@
   justify-content: space-around;
   background-color: white;
   border: 5px solid;
-  border-color: #E3350D;
+  border-color: #e3350d;
   border-radius: 5px;
+  font-family: "pokemonclassic";
   margin-top: 5px;
-
 }
 
 #stats {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: white;
   border: 5px solid;
-  border-color: #E3350D;
+  border-color: #e3350d;
   border-radius: 5px;
   margin-top: 5px;
   font-weight: bold;
+  padding-left: -20px;
+  font-family: "pokemonclassic";
 }
 
 .boton {
@@ -84,16 +92,16 @@
   justify-content: center;
   align-items: center;
   margin-left: 70%;
-  
 }
 
 #button {
- margin-bottom: 30px;
- background-color: white;
- border: 3px solid;
- border-color: #E3350D;
- border-radius: 5px;
- padding: 5px 10px;
- color: #E3350D;
- font-weight: bold;
+  margin-bottom: 30px;
+  font-family: "pokemonclassic";
+  background-color: white;
+  border: 3px solid;
+  border-color: #e3350d;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #e3350d;
+  font-weight: bold;
 }

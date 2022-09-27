@@ -23,6 +23,7 @@ export function getPokemons() {
         payload: pokes.data,
       });
     } catch (e) {
+      console.log(e);
       return dispatch({ type: GET_POKEMONS, payload: [] });
     }
   };
@@ -37,6 +38,26 @@ export function getOnePoke(name) {
       console.log(e);
       return dispatch({ type: GET_POKE, payload: [] });
     }
+  };
+}
+
+export function getPokemonDetail(id) {
+  return async (dispatch) => {
+    try {
+      const poke = await axios.get(`${LOCAL}pokemons/${id}`);
+
+      return dispatch({ type: GET_POKEMON_DETAIL, payload: poke.data });
+    } catch (e) {
+      console.log(e);
+      return dispatch({ type: GET_POKEMON_DETAIL, payload: {} });
+    }
+  };
+}
+
+export function getTypes() {
+  return {
+    type: GET_TYPES,
+    payload: getTypesPokemon(),
   };
 }
 
@@ -82,28 +103,9 @@ export function postPokemon(input) {
   };
 }
 
-export function getPokemonDetail(id) {
-  return async (dispatch) => {
-    try {
-      const poke = await axios.get(`${LOCAL}pokemons/${id}`);
-      return dispatch({ type: GET_POKEMON_DETAIL, payload: poke.data });
-    } catch (e) {
-      console.log(e);
-      return dispatch({ type: GET_POKEMON_DETAIL, payload: {} });
-    }
-  };
-}
-
 export function deletePoke() {
   return {
     type: DELETE_POKEMON,
     payload: {},
-  };
-}
-
-export function getTypes() {
-  return {
-    type: GET_TYPES,
-    payload: getTypesPokemon(),
   };
 }

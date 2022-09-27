@@ -4,6 +4,7 @@ import {
   filterForNameOrId,
   filterForAlf,
   filterForAtk,
+  getDetailPoke,
 } from "../../helpers/Filters";
 import {
   GET_POKEMONS,
@@ -82,6 +83,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         pokeDetail: action.payload,
       };
+
     case DELETE_POKEMON:
       return {
         ...state,

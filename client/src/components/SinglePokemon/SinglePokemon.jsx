@@ -1,16 +1,22 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { deletePoke, getPokemonDetail } from "../store/actions";
-import pokeImage from "../images/unknown.png.png";
+import { deletePoke, getPokemonDetail } from "../../store/actions";
+import pokeImage from "../../images/unknown.png.png";
 import s from "./SinglePokemon.module.css";
+import { GoHeart } from "react-icons/go";
+import {
+  GiFist,
+  GiShieldEchoes,
+  GiWalkingBoot,
+  GiWeight,
+  GiBodyHeight,
+} from "react-icons/gi";
 
 export function SinglePokemon({ match }) {
   const pokeDetail = useSelector((state) => state.pokeDetail);
-  const propiedades = match.params.id;
-  console.log("pokedetail -> ", pokeDetail);
-
   const types = useSelector((state) => state.types);
+  const propiedades = match.params.id;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -32,21 +38,33 @@ export function SinglePokemon({ match }) {
 
           <div className={s.stats}>
             <div className={s.nametipe}>
-              <h1 className={s.h1}>{pokeDetail.name}</h1>
-              <h1 className={s.id}>{propiedades}</h1>
+              <h1 className={s.h1}>{pokeDetail.name.toUpperCase()}</h1>
+              <h1 className={s.id}>{propiedades.slice(0, 7)}</h1>
             </div>
             <div id={s.types}>
               {pokeDetail.type.map((e) => (
-                <h3 key={e.index}>{e + " "}</h3>
+                <h3 key={e.index}>{e.toUpperCase() + " "}</h3>
               ))}
             </div>
             <div id={s.stats}>
-              <ol>• Health Points: {pokeDetail.stats.vida}</ol>
-              <ol>• Attack: {pokeDetail.stats.attack}</ol>
-              <ol>• Defense: {pokeDetail.stats.defense}</ol>
-              <ol>• Speed: {pokeDetail.stats.speed}</ol>
-              <ol>• Heigth: {pokeDetail.height}</ol>
-              <ol>• Weigth: {pokeDetail.weight} </ol>
+              <ol>
+                <GoHeart /> Health Points: {pokeDetail.stats.vida}
+              </ol>
+              <ol>
+                <GiFist /> Attack: {pokeDetail.stats.attack}
+              </ol>
+              <ol>
+                <GiShieldEchoes /> Defense: {pokeDetail.stats.defense}
+              </ol>
+              <ol>
+                <GiWalkingBoot /> Speed: {pokeDetail.stats.speed}
+              </ol>
+              <ol>
+                <GiBodyHeight /> Heigth: {pokeDetail.height}
+              </ol>
+              <ol>
+                <GiWeight /> Weigth: {pokeDetail.weight}{" "}
+              </ol>
             </div>
           </div>
         </div>

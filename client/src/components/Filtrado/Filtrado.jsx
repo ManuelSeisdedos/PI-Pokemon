@@ -3,7 +3,7 @@ import {
   filterByCreated,
   filteredByAlf,
   filterByAtk,
-} from "../store/actions";
+} from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./Filtrado.module.css";
 
