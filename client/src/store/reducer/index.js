@@ -4,13 +4,12 @@ import {
   filterForNameOrId,
   filterForAlf,
   filterForAtk,
-  newPokemon,
 } from "../../helpers/Filters";
 import {
   GET_POKEMONS,
   POST_POKEMON,
-  GET_TYPES,
   GET_POKE,
+  GET_TYPES,
   FILTER_BY_TYPE,
   FILTER_BY_NAME,
   FILTER_BY_CREATED,
@@ -41,11 +40,19 @@ export default function reducer(state = initialState, action) {
         ...state,
         filteredPokes: action.payload,
       };
-
+    case GET_TYPES:
+      return {
+        ...state,
+        types: action.payload.data,
+      };
     case FILTER_BY_TYPE:
       return {
         ...state,
-        pokemons: filterForType(state.allPokemons, action.payload),
+        pokemons: filterForType(
+          state.pokemons,
+          action.payload,
+          state.allPokemons
+        ),
       };
 
     case FILTER_BY_NAME:
@@ -56,19 +63,19 @@ export default function reducer(state = initialState, action) {
     case FILTER_BY_CREATED:
       return {
         ...state,
-        pokemons: filterForCreated(state.allPokemons, action.payload),
+        pokemons: filterForCreated(state.pokemons, action.payload),
       };
 
     case FILTER_BY_ALF:
       return {
         ...state,
-        pokemons: filterForAlf(state.allPokemons, action.payload),
+        pokemons: filterForAlf(state.pokemons, action.payload),
       };
     case FILTER_BY_ATK:
       return {
         ...state,
 
-        pokemons: filterForAtk(state.allPokemons, action.payload),
+        pokemons: filterForAtk(state.pokemons, action.payload),
       };
     case POST_POKEMON:
       return {
@@ -79,6 +86,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         pokeDetail: action.payload,
       };
+
     case DELETE_POKEMON:
       return {
         ...state,

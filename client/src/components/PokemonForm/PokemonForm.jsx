@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { postPokemon } from "../store/actions";
-import s from "./PokemonForm.module.css"
+import { postPokemon } from "../../store/actions";
+import s from "./PokemonForm.module.css";
 export function PokemonForm() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const types = useSelector((state) => state.types);
-  const [errors, setErrors] = useState({});
+
+  const [errors, setErrors] = useState({ validate: true });
   const [input, setInput] = useState({
     name: "",
     image: "",
@@ -34,19 +34,26 @@ export function PokemonForm() {
   };
 
   const handleSelect = (e) => {
+    if (input.type.length >= 2) return;
     setInput({
       ...input,
       type: [...input.type, e.target.value],
     });
+    setErrors(
+      validate({
+        ...input,
+        type: [...input.type, e.target.value],
+      })
+    );
   };
-  console.log("types -->", input.type);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(postPokemon(input));
     alert("Pokemon Creado");
     setInput({
       name: "",
-      image: "",
+      image: null,
       type: [],
       vida: "",
       ataque: "",
@@ -60,7 +67,6 @@ export function PokemonForm() {
   };
 
   const handleDelete = (type) => {
-    console.log("type delete ->", type);
     setInput({
       ...input,
       type: input.type.filter((el) => el !== type),
@@ -68,13 +74,53 @@ export function PokemonForm() {
   };
 
   function validate(input) {
-    let errors = {};
+    let errors = { validate: true };
     if (!input.name) {
       errors.name = "A pokemon name is required";
-    } else if (input.name.length > 15) {
+    }
+
+    if (!/^[a-zA-Z]+$/.test(input.name))
+      errors.name = "No puede contener caracteres especiales";
+    if (input.name.length > 15) {
       errors.name = "The pokemon name is too long";
-    } else if (typeof input.name !== "string") {
+    }
+    if (typeof input.name !== "string") {
       errors.name = "Pokemon name mistake";
+    }
+    if (!input.vida) {
+      errors.vida = "More characters needed";
+    }
+    if (!input.ataque) {
+      errors.ataque = "More characters needed";
+    }
+    if (!input.defensa) {
+      errors.defensa = "More characters needed";
+    }
+    if (!input.velocidad) {
+      errors.velocidad = "More characters needed";
+    }
+    if (!input.altura) {
+      errors.altura = "More characters needed";
+    }
+    if (!input.peso) {
+      errors.peso = "More characters needed";
+    }
+    if (!input.type.length >= 1) {
+      errors.type = "The pokemon needs a type";
+    }
+    if (
+      typeof input.name === "string" &&
+      input.name.length < 15 &&
+      input.type.length &&
+      input.name &&
+      input.vida &&
+      input.ataque &&
+      input.defensa &&
+      input.velocidad &&
+      input.altura &&
+      input.peso
+    ) {
+      errors.validate = false;
     }
     return errors;
   }
@@ -85,8 +131,8 @@ export function PokemonForm() {
         <button className={s.home}>Home</button>
       </Link>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <div >
-          <label className={s.label} >Name: </label>
+        <div>
+          <label className={s.label}>Name: </label>
           <input
             type="text"
             placeholder="*"
@@ -98,8 +144,8 @@ export function PokemonForm() {
           />
           {errors.name && <p className={s.error}>{errors.name}</p>}
         </div>
-        <div >
-          <label  className={s.label} >Health Points: </label>
+        <div>
+          <label className={s.label}>Health Points: </label>
           <input
             type="number"
             value={input.vida}
@@ -108,8 +154,8 @@ export function PokemonForm() {
             id={s.pad}
           />
           {errors.vida && <p className="error">{errors.vida}</p>}
-        
-          <label  className={s.label}>Attack: </label>
+
+          <label className={s.label}>Attack: </label>
           <input
             type="number"
             value={input.ataque}
@@ -120,7 +166,7 @@ export function PokemonForm() {
           {errors.ataque && <p className="error">{errors.ataque}</p>}
         </div>
         <div>
-          <label  className={s.label}>Defense: </label>
+          <label className={s.label}>Defense: </label>
           <input
             type="number"
             value={input.defensa}
@@ -131,7 +177,7 @@ export function PokemonForm() {
           {errors.defensa && <p className="error">{errors.defensa}</p>}
         </div>
         <div>
-          <label  className={s.label}>Speed: </label>
+          <label className={s.label}>Speed: </label>
           <input
             type="number"
             value={input.velocidad}
@@ -142,7 +188,7 @@ export function PokemonForm() {
           {errors.velocidad && <p className="error">{errors.velocidad}</p>}
         </div>
         <div>
-          <label  className={s.label}>Height: </label>
+          <label className={s.label}>Height: </label>
           <input
             type="number"
             value={input.altura}
@@ -153,7 +199,7 @@ export function PokemonForm() {
           {errors.altura && <p className="error">{errors.altura}</p>}
         </div>
         <div>
-          <label  className={s.label}>Weight: </label>
+          <label className={s.label}>Weight: </label>
           <input
             type="number"
             value={input.peso}
@@ -164,7 +210,7 @@ export function PokemonForm() {
           {errors.peso && <p className="error">{errors.peso}</p>}
         </div>
         <div>
-          <label  className={s.label}>Image: </label>
+          <label className={s.label}>Image: </label>
           <input
             type="text"
             value={input.image}
@@ -174,7 +220,7 @@ export function PokemonForm() {
           />
         </div>
         <div>
-          <label  className={s.label}>Type: </label>
+          <label className={s.label}>Type: </label>
           <select onChange={(e) => handleSelect(e)} id={s.types}>
             <option value="all">All</option>
             <option value="normal">Normal</option>
@@ -199,18 +245,25 @@ export function PokemonForm() {
             <option value="shadow">Shadow</option>
           </select>
         </div>
-        <button type="submit" className={s.create}> Create Pokemon</button>
+        <button type="submit" disabled={errors.validate} className={s.create}>
+          {" "}
+          Create Pokemon
+        </button>
       </form>
       <div className={s.form}>
-      {input.type.map((el) => (
-        <div className={s.tipo}>
-          <button type="onClick" onClick={() => handleDelete(el)
-          }className={s.btnx}>
-            x
-          </button>
-          <p key={el.id} >{el}</p>
-        </div>
-      ))}</div>
+        {input.type.map((el) => (
+          <div className={s.tipo}>
+            <button
+              type="onClick"
+              onClick={() => handleDelete(el)}
+              className={s.btnx}
+            >
+              x
+            </button>
+            <p key={el.id}>{el}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

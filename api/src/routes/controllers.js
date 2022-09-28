@@ -36,6 +36,7 @@ const getDbPokes = async () => {
       id: e.id,
       name: e.name,
       image: e.image,
+
       type: e.types.map((e) => e["tipo"]),
       created: "true",
       attack: e.ataque,
@@ -79,9 +80,29 @@ const getPokeIdApi = async (id) => {
 
 const getPokeByIdDb = async (id) => {
   try {
-    const pokemon = await Pokemon.findByPk(id);
+    const pokemon = await Pokemon.findByPk(id, {
+      include: {
+        model: Type,
+        attributes: ["tipo"],
+      },
+    });
 
-    if (pokemon) return pokemon.dataValues;
+    let poke = {
+      name: pokemon.dataValues.name,
+
+      image: pokemon.dataValues.image,
+      type: pokemon.dataValues.types.map((e) => e.dataValues.tipo),
+      stats: {
+        vida: pokemon.dataValues.vida,
+        attack: pokemon.dataValues.ataque,
+        defense: pokemon.dataValues.defensa,
+        speed: pokemon.dataValues.velocidad,
+      },
+      weight: pokemon.dataValues.peso,
+      height: pokemon.dataValues.altura,
+    };
+
+    if (poke) return poke;
     return "No existe un pokemon con este id.";
   } catch (error) {
     return error.message;
@@ -92,6 +113,7 @@ const getPokeById = async (id) => {
   const idParam = id;
   if (idParam.includes("-")) {
     const poke = await getPokeByIdDb(id);
+
     if (poke) return poke;
     else return "No existe un pokemon con este id";
   } else {
@@ -111,16 +133,14 @@ const getTypesPokeApi = async () => {
       tipo: e.name,
     })
   );
-  await Type.bulkCreate(result);
-  // result.forEach((e) => {
-  //   Type.findOrCreate({
-  //     where: { tipo: e.tipo },
-  //   });
-  // });
+  //await Type.bulkCreate(result);
+  result.forEach((e) => {
+    Type.findOrCreate({
+      where: { tipo: e.tipo },
+    });
+  });
   const pokeType = await Type.findAll();
   return pokeType;
 };
-
-getPokesDb = async () => await Type.findAll();
 
 module.exports = { getAllPokes, getPokeById, getTypesPokeApi };

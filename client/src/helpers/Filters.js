@@ -1,13 +1,14 @@
 import axios from "axios";
+const LOCAL = "http://localhost:3001/";
 
-export function filterForType(allPokemons, type) {
+export function filterForType(pokemons, type, allPokemons) {
   return type === "all"
     ? allPokemons
-    : allPokemons.filter((pokemon) => pokemon.type.includes(type) === true);
+    : pokemons.filter((pokemon) => pokemon.type.includes(type) === true);
 }
 
 export function filterForNameOrId(allPokemons, name) {
-  const filtradoPorId = allPokemons.filter((poke) => poke.id == name);
+  const filtradoPorId = allPokemons.filter((poke) => poke.id === Number(name));
   const filtradoPorNombre = allPokemons.filter(
     (poke) => poke.name.toLowerCase() === name.toLowerCase()
   );
@@ -36,12 +37,12 @@ export function filterForCreated(allPokemons, payload) {
 
 const ordenedAlfAsc = (pokemonOrdenar) =>
   pokemonOrdenar.sort((a, b) => {
-    // a.name = a.name.toLowerCase();
-    // b.name = b.name.toLowerCase();
-    if (a.name.toLowerCase() > b.name.toLowerCase()) {
+    a.name = a.name.toLowerCase();
+    b.name = b.name.toLowerCase();
+    if (a.name > b.name) {
       return 1;
     }
-    if (a.name.toLowerCase() < b.name.toLowerCase()) {
+    if (a.name < b.name) {
       return -1;
     }
     return 0;
@@ -49,8 +50,8 @@ const ordenedAlfAsc = (pokemonOrdenar) =>
 
 const ordenedAlfDesc = (pokemonOrdenar) =>
   pokemonOrdenar.sort((a, b) => {
-    a.name = a.name;
-    b.name = b.name;
+    a.name = a.name.toLowerCase();
+    b.name = b.name.toLowerCase();
     if (a.name < b.name) {
       return 1;
     }
@@ -103,16 +104,15 @@ export const filterForAtk = (allPokemons, payload) => {
 };
 
 export const newPokemon = async (allPokemons, payload) => {
-  const { name, image, type, vida, ataque, defensa, velocidad, altura, peso } =
-    payload;
-
   return await axios.post("http://localhost:3001/pokemons", payload);
 };
 
-// export const pokemonDetail = async (id) => {
-//   try {
-//     await axios.get(`http://localhost:3001/pokemons/${id}`);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const getTypesPokemon = async () => {
+  return await axios.get("http://localhost:3001/types");
+};
+
+export const getDetailPoke = async (id) => {
+  const poke = await axios.get(`${LOCAL}pokemons/${id}`);
+
+  return poke;
+};

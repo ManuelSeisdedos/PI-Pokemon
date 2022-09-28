@@ -1,10 +1,10 @@
 import "./App.css";
-import { SinglePokemon } from "./components/SinglePokemon";
-import { BrowserRouter, Route, Switch, useRouteMatch } from "react-router-dom";
-import Home from "./components/Home";
-import { LandingPage } from "./components/LandingPage";
-import { NavBar } from "./components/NavBar";
-import { PokemonForm } from "./components/PokemonForm";
+import { SinglePokemon } from "./components/SinglePokemon/SinglePokemon";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Home from "./components/Home/Home";
+import { LandingPage } from "./components/LandingPage/LandingPage";
+import { NavBar } from "./components/NavBar/NavBar";
+import { PokemonForm } from "./components/PokemonForm/PokemonForm";
 import s from "./App.module.css";
 
 function App() {

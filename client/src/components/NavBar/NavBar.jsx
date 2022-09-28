@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import pokemon from "../images/pngegg.png";
-import { Filtrado } from "./Filtrado";
-import SearchBar from "./SearchBar";
+import pokemon from "../../images/pngegg.png";
+import { Filtrado } from "../Filtrado/Filtrado";
+import SearchBar from "../SearchBar/SearchBar.jsx";
 import s from "./NavBar.module.css";
 export function NavBar() {
   return (
@@ -20,7 +20,6 @@ export function NavBar() {
           <button className={s.create}> CREATE POKEMON</button>
         </Link>
       </div>
-      
     </div>
   );
 }
