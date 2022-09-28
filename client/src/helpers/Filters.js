@@ -1,10 +1,10 @@
 import axios from "axios";
 const LOCAL = "http://localhost:3001/";
 
-export function filterForType(allPokemons, type) {
+export function filterForType(pokemons, type, allPokemons) {
   return type === "all"
     ? allPokemons
-    : allPokemons.filter((pokemon) => pokemon.type.includes(type) === true);
+    : pokemons.filter((pokemon) => pokemon.type.includes(type) === true);
 }
 
 export function filterForNameOrId(allPokemons, name) {

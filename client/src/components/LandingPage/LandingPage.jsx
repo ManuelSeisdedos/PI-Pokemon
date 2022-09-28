@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import pika from "../../images/Landing/PIKA.jpg";
 
 import s from "./LandingPage.module.css";
 

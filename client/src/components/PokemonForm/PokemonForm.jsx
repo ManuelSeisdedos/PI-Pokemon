@@ -121,7 +121,7 @@ export function PokemonForm() {
     }
     return errors;
   }
-  console.log("ERRORS --->", errors);
+
   return (
     <div className={s.back}>
       <Link to="/home">
