@@ -4,7 +4,6 @@ import {
   filterForNameOrId,
   filterForAlf,
   filterForAtk,
-  getDetailPoke,
 } from "../../helpers/Filters";
 import {
   GET_POKEMONS,

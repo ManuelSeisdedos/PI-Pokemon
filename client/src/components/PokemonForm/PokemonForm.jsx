@@ -78,6 +78,9 @@ export function PokemonForm() {
     if (!input.name) {
       errors.name = "A pokemon name is required";
     }
+
+    if (!/^[a-zA-Z]+$/.test(input.name))
+      errors.name = "No puede contener caracteres especiales";
     if (input.name.length > 15) {
       errors.name = "The pokemon name is too long";
     }
