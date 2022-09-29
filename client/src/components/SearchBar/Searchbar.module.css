@@ -4,12 +4,15 @@
     flex-wrap: nowrap;
     margin-bottom: 20%;
     padding: 3%;
+    margin-left: 1%;
 }
 
 #boton {
     padding: 0% 5%;
+    margin-left: 1%
 }
 
 #buton {
-    padding: 2% 4%
+    padding: 2% 4%;
+    
 }

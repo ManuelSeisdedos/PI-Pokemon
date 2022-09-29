@@ -143,4 +143,20 @@ const getTypesPokeApi = async () => {
   return pokeType;
 };
 
-module.exports = { getAllPokes, getPokeById, getTypesPokeApi };
+const findPoke = async (name) => {
+  const pokeDB = await Pokemon.findOne( {where: {
+    name:name
+  }})
+try {
+  const pokeApi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+  
+} catch (error) {
+  return {error: error.message}
+}
+
+  if (pokeDB) return pokeDB
+  if (pokeApi) return pokeApi
+  else return undefined
+}
+
+module.exports = { getAllPokes, getPokeById, getTypesPokeApi,findPoke };

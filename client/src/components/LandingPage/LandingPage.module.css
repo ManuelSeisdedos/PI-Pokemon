@@ -6,7 +6,8 @@
   height: 100vh;
   width: 100vw;
   background-image: url("../../images/Landing/Siluetas.jpg");
-  background-position-x: 50%;
+  background-position-y: -15px;
+  background-size: cover;
 }
 
 #img {

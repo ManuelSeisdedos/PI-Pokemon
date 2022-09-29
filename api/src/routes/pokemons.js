@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { Pokemon, Type } = require("../db");
-const { getAllPokes, getPokeById } = require("./controllers");
+const { getAllPokes, getPokeById, findPoke } = require("./controllers");
 const router = Router();
 
 router.get("/", async (req, res) => {
@@ -41,38 +41,45 @@ router.post("/", async (req, res, next) => {
     type,
     image,
   } = req.body;
-  try {
-    const result = [];
-    type.map((e) => result.push(e));
 
-    const newPokemon = await Pokemon.create({
-      id,
-      name,
-      vida,
-      ataque,
-      defensa,
-      velocidad,
-      altura,
-      peso,
-      image,
-    });
-    const resultado = result.map((e) =>
-      Type.findOne({
-        where: { tipo: e },
-      })
-    );
-
-    const tiposResueltos = await Promise.all(resultado);
-
-    if (tiposResueltos) {
-      const promesa = tiposResueltos.map((e) => newPokemon.addType(e));
-      await Promise.all(promesa);
+  const onePoke = await findPoke(name)
+  
+  if (onePoke === undefined) {
+    try {
+      const result = [];
+      type.map((e) => result.push(e));
+      
+      const newPokemon = await Pokemon.create({
+  
+        id,
+        name,
+        vida,
+        ataque,
+        defensa,
+        velocidad,
+        altura,
+        peso,
+        image,
+      });
+      const resultado = result.map((e) =>
+        Type.findOne({
+          where: { tipo: e },
+        })
+      );
+  
+      const tiposResueltos = await Promise.all(resultado);
+  
+      if (tiposResueltos) {
+        const promesa = tiposResueltos.map((e) => newPokemon.addType(e));
+        await Promise.all(promesa);
+      }
+  
+      res.status(200).json(newPokemon);
+    } catch (error) {
+      res.status(400).json({ error: error.messagge });
     }
-
-    res.status(200).json(newPokemon);
-  } catch (error) {
-    res.status(400).json({ error: error.messagge });
   }
+ 
 });
 
 module.exports = router;
