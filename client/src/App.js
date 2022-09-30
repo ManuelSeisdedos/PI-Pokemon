@@ -6,6 +6,7 @@ import { LandingPage } from "./components/LandingPage/LandingPage";
 import { NavBar } from "./components/NavBar/NavBar";
 import { PokemonForm } from "./components/PokemonForm/PokemonForm";
 import s from "./App.module.css";
+import Delete from "./components/Delete/Delete";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/home" component={Home} />
           <Route path="/create" component={PokemonForm} />
           <Route path="/pokemon/:id" component={SinglePokemon} />
+          <Route path="/delete" component={Delete} />
         </div>
       </div>
     </BrowserRouter>

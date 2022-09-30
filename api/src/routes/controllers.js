@@ -144,19 +144,45 @@ const getTypesPokeApi = async () => {
 };
 
 const findPoke = async (name) => {
-  const pokeDB = await Pokemon.findOne( {where: {
-    name:name
-  }})
-try {
-  const pokeApi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
-  
-} catch (error) {
-  return {error: error.message}
-}
+  console.log(name);
+  const pokeDB = await Pokemon.findOne({
+    where: {
+      name: name,
+    },
+  });
 
-  if (pokeDB) return pokeDB
-  if (pokeApi) return pokeApi
-  else return undefined
-}
+  if (pokeDB !== null) return pokeDB;
 
-module.exports = { getAllPokes, getPokeById, getTypesPokeApi,findPoke };
+  try {
+    const pokeApi = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${name}`
+    );
+
+    if (pokeApi) return pokeApi;
+    else return {};
+  } catch (error) {
+    return undefined;
+  }
+};
+
+const deletePokemon = async (name) => {
+  try {
+    const poke = await Pokemon.findOne({ where: { name: name } });
+    await poke.destroy();
+    if (poke) {
+      return poke;
+    } else {
+      return Error("This pokemon not exists");
+    }
+  } catch (error) {
+    return error.message;
+  }
+};
+
+module.exports = {
+  getAllPokes,
+  getPokeById,
+  getTypesPokeApi,
+  findPoke,
+  deletePokemon,
+};
