@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { postPokemon } from "../../store/actions";
@@ -80,33 +80,42 @@ export function PokemonForm() {
     }
 
     if (!/^[a-zA-Z]+$/.test(input.name)){
-      errors.name = "No puede contener caracteres especiales";}
+      errors.name = "Cannot have special characters";}
     if (input.name.length > 15) {
       errors.name = "The pokemon name is too long";
-    }
+      return errors
+    } 
     if (typeof input.name !== "string") {
       errors.name = "Pokemon name mistake";
+      return errors
     }
     if (!input.vida) {
       errors.vida = "More characters needed";
+      return errors
     }
     if (!input.ataque) {
       errors.ataque = "More characters needed";
+      return errors
     }
     if (!input.defensa) {
       errors.defensa = "More characters needed";
+      return errors
     }
     if (!input.velocidad) {
       errors.velocidad = "More characters needed";
+      return errors
     }
     if (!input.altura) {
       errors.altura = "More characters needed";
+      return errors
     }
     if (!input.peso) {
       errors.peso = "More characters needed";
+      return errors
     }
     if (!input.type.length >= 1) {
       errors.type = "The pokemon needs a type";
+      return errors
     }
     if (
       typeof input.name === "string" &&

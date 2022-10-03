@@ -4,11 +4,11 @@ import {
   filteredByAlf,
   filterByAtk,
 } from "../../store/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import s from "./Filtrado.module.css";
 
 export function Filtrado() {
-  const types = useSelector((state) => state.types);
+ 
 
   const dispatch = useDispatch();
   function handleFilteredStatus(e) {

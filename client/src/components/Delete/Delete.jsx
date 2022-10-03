@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import s from "./Delete.module.css";
+import { deletePoke } from "../../store/actions";
 
 export default function Delete() {
   const [pokemon, setPokemon] = useState();
@@ -17,7 +17,7 @@ export default function Delete() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(deletePokemon(pokemon));
+    dispatch(deletePoke(pokemon));
     setPokemon("");
   };
 

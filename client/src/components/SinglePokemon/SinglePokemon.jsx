@@ -15,7 +15,7 @@ import {
 
 export function SinglePokemon({ match }) {
   const pokeDetail = useSelector((state) => state.pokeDetail);
-  const types = useSelector((state) => state.types);
+  
   const propiedades = match.params.id;
 
   const dispatch = useDispatch();
