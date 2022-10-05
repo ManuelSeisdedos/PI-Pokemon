@@ -36,7 +36,6 @@ const getDbPokes = async () => {
       id: e.id,
       name: e.name,
       image: e.image,
-
       type: e.types.map((e) => e["tipo"]),
       created: "true",
       attack: e.ataque,
@@ -89,7 +88,6 @@ const getPokeByIdDb = async (id) => {
 
     let poke = {
       name: pokemon.dataValues.name,
-
       image: pokemon.dataValues.image,
       type: pokemon.dataValues.types.map((e) => e.dataValues.tipo),
       stats: {
@@ -103,7 +101,7 @@ const getPokeByIdDb = async (id) => {
     };
 
     if (poke) return poke;
-    return "No existe un pokemon con este id.";
+    return "There is no pokemon with this id";
   } catch (error) {
     return error.message;
   }
@@ -115,7 +113,7 @@ const getPokeById = async (id) => {
     const poke = await getPokeByIdDb(id);
 
     if (poke) return poke;
-    else return "No existe un pokemon con este id";
+    else return "There is no pokemon with this id.";
   } else {
     const poke = await getPokeIdApi(id);
 
@@ -133,7 +131,7 @@ const getTypesPokeApi = async () => {
       tipo: e.name,
     })
   );
-  //await Type.bulkCreate(result);
+  
   result.forEach((e) => {
     Type.findOrCreate({
       where: { tipo: e.tipo },
@@ -169,11 +167,7 @@ const deletePokemon = async (name) => {
   try {
     const poke = await Pokemon.findOne({ where: { name: name } });
     await poke.destroy();
-    if (poke) {
-      return poke;
-    } else {
-      return Error("This pokemon not exists");
-    }
+    return "Pokemon succefully deleted."
   } catch (error) {
     return error.message;
   }

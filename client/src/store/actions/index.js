@@ -23,7 +23,6 @@ export function getPokemons() {
         payload: pokes.data,
       });
     } catch (e) {
-      console.log(e);
       return dispatch({ type: GET_POKEMONS, payload: [] });
     }
   };

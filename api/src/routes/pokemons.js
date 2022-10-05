@@ -1,16 +1,18 @@
 const { Router } = require("express");
 
 const { Pokemon, Type } = require("../db");
+
 const {
   getAllPokes,
   getPokeById,
   findPoke,
-  deletePokemon,
+  deletePokemon
 } = require("./controllers");
 const router = Router();
 
 router.get("/", async (req, res) => {
   const { name } = req.query;
+
   const pokes = await getAllPokes();
   if (name) {
     const pokemons = pokes.find(
@@ -18,7 +20,7 @@ router.get("/", async (req, res) => {
     );
     pokemons
       ? res.status(200).json(pokemons)
-      : res.status(404).send("the pokemon does not exist");
+      : res.status(404).send("The pokemon does not exist");
   } else {
     res.status(200).json(pokes);
   }
@@ -97,7 +99,7 @@ router.delete("/delete", async (req, res) => {
   if (!name) res.status(400).json({ error: "This pokemon not exists" });
 
   try {
-    const poke = await Pokemon.findOne({ where: { name: name } });
+    const poke = deletePokemon(name)
 
     res.status(200).json("successfully deleted pokemon");
   } catch (error) {
