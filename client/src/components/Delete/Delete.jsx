@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import s from "./Delete.module.css";
@@ -7,6 +6,20 @@ import s from "./Delete.module.css";
 export default function Delete() {
   const [pokemon, setPokemon] = useState();
 
+  const deletePokemon = async (name) => {
+    try {
+      const poke = await pokemon.findOne({ where: { name: name } });
+      await poke.destroy();
+      if (poke) {
+        return poke;
+      } else {
+        return Error("This pokemon not exists");
+      }
+    } catch (error) {
+      return error.message;
+    }
+  };
+  
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
