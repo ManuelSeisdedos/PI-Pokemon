@@ -4,8 +4,7 @@ const { Pokemon, Type } = require("../db");
 const {
   getAllPokes,
   getPokeById,
-  findPoke,
-  deletePokemon,
+  findPoke
 } = require("./controllers");
 const router = Router();
 
@@ -88,20 +87,6 @@ router.post("/", async (req, res, next) => {
     res.status(200).json(newPokemon);
   } else {
     res.status(400).json({ error: "the pokemon already exists" });
-  }
-});
-
-router.delete("/delete", async (req, res) => {
-  const { name } = req.body;
-
-  if (!name) res.status(400).json({ error: "This pokemon not exists" });
-
-  try {
-    const poke = await Pokemon.findOne({ where: { name: name } });
-
-    res.status(200).json("successfully deleted pokemon");
-  } catch (error) {
-    res.status(400).json({ error: "could not delete the pokemon" });
   }
 });
 
