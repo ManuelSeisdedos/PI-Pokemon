@@ -8,6 +8,6 @@ const router = Router();
 //getTypesPokeApi();
 
 router.use("/pokemons", pokemonRoute);
-router.use("types", typesRoute);
+router.use("/types", typesRoute);
 
 module.exports = router;
