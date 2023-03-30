@@ -1,5 +1,5 @@
 import axios from "axios";
-const LOCAL = "http://localhost:3001/";
+const LOCAL = "https://pi-pokemon-sepia.vercel.app/";
 
 export function filterForType(pokemons, type, allPokemons) {
   return type === "all"
@@ -104,11 +104,11 @@ export const filterForAtk = (allPokemons, payload) => {
 };
 
 export const newPokemon = async (allPokemons, payload) => {
-  return await axios.post("http://localhost:3001/pokemons", payload);
+  return await axios.post(`${LOCAL}/pokemons`, payload);
 };
 
 export const getTypesPokemon = async () => {
-  return await axios.get("http://localhost:3001/types");
+  return await axios.get(`${LOCAL}/types`);
 };
 
 export const getDetailPoke = async (id) => {
