@@ -9,7 +9,7 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.get("/", async (req, res, next) => {
+router.get("", async (req, res, next) => {
   const types = await getTypesPokeApi();
 
   return res.status(200).json(types);
