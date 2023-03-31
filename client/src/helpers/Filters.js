@@ -104,11 +104,11 @@ export const filterForAtk = (allPokemons, payload) => {
 };
 
 export const newPokemon = async (allPokemons, payload) => {
-  return await axios.post(`${LOCAL}/pokemons`, payload);
+  return await axios.post(`${LOCAL}pokemons`, payload);
 };
 
 export const getTypesPokemon = async () => {
-  return await axios.get(`${LOCAL}/types`);
+  return await axios.get(`${LOCAL}types`);
 };
 
 export const getDetailPoke = async (id) => {
