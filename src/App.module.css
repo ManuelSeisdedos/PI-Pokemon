@@ -2,7 +2,7 @@
   background-image: url("./images/POKEBOLAGRIS.png");
   background-repeat: repeat;
   max-width: 100vw;
-  max-height: 300vh;
+  max-height: 400vh;
   font-family: "pokemonclassic";
 }
 
@@ -22,3 +22,24 @@
   background-color: red;
   font-family: "pokemonclassic";
 }
+
+@media (min-width: 0px) and (max-width: 412px) {
+  
+.back {
+  background-image: url("./images/POKEBOLAGRIS.png");
+  background-repeat: repeat;
+  max-width: 100vw;
+   height: 500vh;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+#principal {
+  width: 100%;
+  font-family: "pokemonclassic";
+}
+
+}
+

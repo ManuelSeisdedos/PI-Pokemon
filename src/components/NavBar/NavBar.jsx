@@ -7,7 +7,9 @@ export function NavBar() {
   return (
     <div className={s.nav}>
       <div id={s.divimg}>
-        <img src={pokemon} alt="" id={s.img} />
+        
+          <img src={pokemon} alt="" id={s.img} />
+              
       </div>
       <div id={s.search}>
         <SearchBar />

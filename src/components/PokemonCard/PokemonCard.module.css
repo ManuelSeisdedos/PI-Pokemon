@@ -49,3 +49,28 @@
   padding: 1% 8%;
   font-size: small;
 }
+
+@media (min-width:0px) and (max-width: 412px) {
+  .back {
+    background-image: url(../../images/fondo\ carta\ pokebola.png);
+    background-size: 130px;
+    background-repeat: no-repeat;
+    background-position: 50% 25%;
+    border-radius: 15%;
+    margin: 5px 5px;
+    padding: 0px 5%;
+    justify-content: center;
+    align-items: space-between;
+    width: 200vw;
+    border: 2px solid;
+    border-color: red;
+  }
+  
+  #img {
+    max-width: 150px;
+    max-height: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10%;
+  }
+}

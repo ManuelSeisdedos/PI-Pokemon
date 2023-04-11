@@ -51,3 +51,35 @@
   cursor: pointer;
   border-radius: 5px;
 }
+
+@media (min-width:0px) and (max-width: 412px) {
+  .nav {
+    width: 100vw;
+    height: 20vh;
+    background-color: #e3350d;
+    align-items: space-between;
+    display: flex;
+    flex-direction: row;
+  }
+
+  #search {
+    display: none;
+  }
+
+  #filter {
+    display: none;
+    /* position: relative;
+    right: 500px; */
+  }
+
+  #button {
+    display:none; 
+    padding: 5% 0%;
+  }
+  
+  .boton-pkm {
+    display: none;
+    width: 10vw;
+    background-color: red;
+  }
+}

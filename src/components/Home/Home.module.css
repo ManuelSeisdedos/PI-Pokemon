@@ -28,3 +28,20 @@
   padding-bottom: 3%;
 }
 
+
+@media (min-width: 0px) and (max-width: 412px) {
+  .all {
+    display: flex;
+    flex-direction: column;
+    padding-top: 22vh;
+    margin-left: 0vw;
+   
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-left: 10vw;
+  }
+}

@@ -32,3 +32,22 @@
     color: red;
     font-weight: bold
 }
+
+@media (min-width: 0px) and (max-width: 412px) {
+
+    .navegar {
+        margin-left: 0%;
+        margin-right: 0%;
+        padding-left: 0%;       
+        display: block;
+    }
+
+    .paginado {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 5% 0%;
+       
+    }
+  
+}
