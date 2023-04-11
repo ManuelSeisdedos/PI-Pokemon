@@ -8,12 +8,12 @@ import s from "./Home.module.css";
 
 export default function Home() {
   const pokemons = useSelector((state) => state.pokemons); // TRAE TODO LO QUE ESTA EN EL ESTADO DE POKEMONS
-  const allPokemons = useSelector((state) => state.allPokemons);
+ 
 
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
+  const [pokemonsPerPage] = useState(12);
 
   const indexOfLastPokemon = currentPage * pokemonsPerPage;
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
