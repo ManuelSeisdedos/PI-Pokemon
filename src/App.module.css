@@ -28,7 +28,7 @@
 .back {
   background-image: url("./images/POKEBOLAGRIS.png");
   max-width: 100vw;
-  height: 500vh;
+  height: 100%;
 }
 
 .row {
@@ -37,6 +37,7 @@
 }
 
 #principal {
+  width: 100%;
   font-family: "pokemonclassic";
 }
 

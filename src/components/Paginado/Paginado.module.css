@@ -44,9 +44,10 @@
     .paginado {
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
-        margin: 20% 0%;
-        padding-left: 0vw;
+
+        justify-content: space-evenly;
+        margin: 0% 0%;
+        padding-left: 5vw;
     }
 
     #list {
@@ -55,7 +56,7 @@
         background-color: white;
         list-style: none;
         margin: 2% 8%;
-        padding: 1% 7%;
+        padding: 1% 5%;
         border: 2px solid;
         border-color: red;
         border-radius: 10%;
