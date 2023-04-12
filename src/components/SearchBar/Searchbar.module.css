@@ -16,3 +16,17 @@
     padding: 2% 4%;
     
 }
+
+@media (min-width:0px) and (max-width: 412px) {
+    .formulario {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+       
+    }
+
+    #buton {
+        padding: 0%
+        
+    }
+}

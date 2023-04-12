@@ -60,6 +60,8 @@
     align-items: space-between;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
 
   #search {
@@ -71,6 +73,13 @@
     /* position: relative;
     right: 500px; */
   }
+
+  
+#divimg {
+  padding: 2%;
+  margin-bottom: 0%;
+}
+
 
   #button {
     display:none; 

@@ -2,7 +2,6 @@
     margin-left: 20%;
     margin-right: -100%;
     padding-left: 30%;
-    
     display: block;
 }
 
@@ -33,21 +32,30 @@
     font-weight: bold
 }
 
-@media (min-width: 0px) and (max-width: 412px) {
+@media (min-width: 0px) and (max-width: 413px) {
 
     .navegar {
         margin-left: 0%;
         margin-right: 0%;
         padding-left: 0%;       
-        display: block;
+        display: contents;
     }
 
     .paginado {
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
-        margin: 5% 0%;
-       
+        justify-content: flex-start;
+        margin: 0% 0%;
+        padding: 0px;
     }
-  
+    #list {
+        background-color: white;
+        list-style: none;
+        padding: 1% 1%;
+        border: 2px solid;
+        border-color: red;
+        border-radius: 10%;
+        color: red
+    }
+    
 }
