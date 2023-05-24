@@ -1,5 +1,5 @@
 import axios from "axios";
-const LOCAL = "https://pi-pokemon-back-production-fdc5.up.railway.app/";
+const LOCAL = process.env.BACK;
 
 export function filterForType(pokemons, type, allPokemons) {
   return type === "all"
