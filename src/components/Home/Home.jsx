@@ -40,7 +40,7 @@ export default function Home() {
     <div className={s.all}>
       <div className={s.cards}>
         {currentPokemons?.length >= 1 &&
-          currentPokemons.map((p, index) => (
+          currentPokemons?.map((p, index) => (
             <PokemonCard
               name={p.name}
               image={p.image}
