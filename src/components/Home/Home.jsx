@@ -15,6 +15,11 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonsPerPage] = useState(12);
 
+  useEffect(() => {
+    dispatch(getPokemons());
+    dispatch(getTypes());
+  }, [dispatch]);
+  
   const indexOfLastPokemon = currentPage * pokemonsPerPage;
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
   const currentPokemons = pokemons.slice(
@@ -26,10 +31,6 @@ export default function Home() {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    dispatch(getPokemons());
-    dispatch(getTypes());
-  }, [dispatch]);
 
   function handleClick(e) {
     e.preventDefault();
