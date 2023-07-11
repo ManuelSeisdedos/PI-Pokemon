@@ -39,8 +39,8 @@ export default function Home() {
   return (
     <div className={s.all}>
       <div className={s.cards}>
-        {currentPokemons.length >= 1 &&
-          currentPokemons.map((p, index) => (
+        {currentPokemons.length >= 1 ?
+          currentPokemons?.map((p, index) => (
             <PokemonCard
               name={p.name}
               image={p.image}
@@ -48,7 +48,7 @@ export default function Home() {
               key={`pokemon-${index}`}
               id={p.id}
             />
-          ))}
+          )) : []}
       </div>
       <div>
         <Paginado
