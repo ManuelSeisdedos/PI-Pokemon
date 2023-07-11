@@ -2,7 +2,7 @@ import { getTypesPokemon, newPokemon } from "../../helpers/Filters";
 import axios from "axios";
 
 
-const LOCAL = process.env.URL_BACK || "pi-pokemon-back.vercel.app";
+const LOCAL = process.env.URL_BACK || "pi-pokemon-back.vercel.app/";
 
 
 export const GET_POKEMONS = "GET_POKEMONS";
@@ -20,7 +20,7 @@ export const GET_TYPES = "GET_TYPES";
 export function getPokemons() {
   return async (dispatch) => {
     try {
-      const pokes = await axios.get(`${LOCAL}pokemons`);
+      const pokes = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=40`);
       return dispatch({
         type: GET_POKEMONS,
         payload: pokes.data,
