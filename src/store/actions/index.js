@@ -1,7 +1,7 @@
 import { getTypesPokemon, newPokemon } from "../../helpers/Filters";
 import axios from "axios";
 
-const LOCAL = process.env.URL_BACK || "http://pi-pokemon-back.vercel.app/";
+const LOCAL = process.env.URL_BACK || "pi-pokemon-back.vercel.app/";
 
 
 export const GET_POKEMONS = "GET_POKEMONS";
