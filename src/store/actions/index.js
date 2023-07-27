@@ -1,8 +1,7 @@
 import { getTypesPokemon, newPokemon } from "../../helpers/Filters";
 import axios from "axios";
 
-
-const LOCAL = process.env.URL_BACK || "pi-pokemon-back.vercel.app/";
+const LOCAL = process.env.URL_BACK || "http://localhost:3000/";
 
 
 export const GET_POKEMONS = "GET_POKEMONS";
@@ -20,13 +19,14 @@ export const GET_TYPES = "GET_TYPES";
 export function getPokemons() {
   return async (dispatch) => {
     try {
-      const pokes = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=40`);
+      const pokes = await axios.get(`${LOCAL}pokemons`);
+      console.log(pokes.data)
       return dispatch({
         type: GET_POKEMONS,
         payload: pokes.data,
       });
     } catch (e) {
-      console.log(e);
+      
       return dispatch({ type: GET_POKEMONS, payload: [] });
     }
   };
@@ -38,7 +38,7 @@ export function getOnePoke(name) {
       const poke = await axios.get(`${LOCAL}pokemons?name=${name}`);
       return dispatch({ type: GET_POKE, payload: poke.data });
     } catch (e) {
-      console.log(e);
+      
       return dispatch({ type: GET_POKE, payload: [] });
     }
   };
@@ -51,7 +51,7 @@ export function getPokemonDetail(id) {
 
       return dispatch({ type: GET_POKEMON_DETAIL, payload: poke.data });
     } catch (e) {
-      console.log(e);
+      
       return dispatch({ type: GET_POKEMON_DETAIL, payload: {} });
     }
   };
